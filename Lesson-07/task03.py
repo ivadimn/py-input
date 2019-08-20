@@ -11,5 +11,5 @@ def generate_new_list(items):
     new_list = [item ** 2 if item > 0 else item for item in items]
     return new_list
 
-
+print(numbers)
 print(generate_new_list(numbers))
