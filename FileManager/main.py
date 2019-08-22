@@ -1,62 +1,69 @@
 import sys
-from core import create_file, create_folder, copy_file, delete_file, get_list, save_info, change_dir, show_command, play
+from core import create_file, create_folder, delete_file, get_list, copy_file, save_info, change_dir
+from game import game, game_number
 
-save_info("Start")
+save_info('старт')
+
 try:
     command = sys.argv[1]
 except IndexError:
-    print("Необходимо ввести команду")
-    command = "help"
-
-if command == "list":
-    if len(sys.argv) > 2 and sys.argv[2] == "dir":
-        get_list(True)
-    else:
+    print('Отсутсвуте параметр вызова')
+else:
+    if command == 'list':
         get_list()
-elif command == "create_file":
-    try:
-        name = sys.argv[2]
-        if len(sys.argv) == 3:
-            create_file(name)
+    elif command == 'create_file':
+        try:
+            name = sys.argv[2]
+        except IndexError:
+            print('Отсутсвуте название файла')
         else:
-            text = "\n".join(sys.argv[3:])
-            create_file(name, text)
-        save_info("Создан файл - {}".format(name))
-    except IndexError:
-        print("Необходимо указать имя файла")
-elif command == "create_folder":
-    try:
-        name = sys.argv[2]
-        create_folder(name)
-        save_info("Создан каталог - {}".format(name))
-    except IndexError :
-        print("Необходимо указать имя каталога")
-elif command == "copy":
-    try:
-        name = sys.argv[2]
-        new_name = sys.argv[3]
-        copy_file(name, new_name)
-        save_info("Скопировано из {} в {}".format(name, new_name))
-    except IndexError:
-        print("Необходимо имя файла источника и имя нового файла")
-elif command == "delete":
-    try:
-        name = sys.argv[2]
-        delete_file(name)
-        save_info("Удалено - {}".format(name))
-    except IndexError:
-        print("Необходимо указать имя файла или каталога")
-elif command == "change":
-    try:
-        name = sys.argv[2]
-        change_dir(name)
-        get_list()
-    except IndexError:
-        print("Необходимо указать имя каталога")
-elif command == "play":
-    play()
-elif command == "help":
-    show_command()
+            create_file(name)
+    elif command == 'create_folder':
+        try:
+            name = sys.argv[2]
+        except IndexError:
+            print('Отсутсвуте название файла')
+        else:
+            create_folder(name)
+    elif command == 'delete':
+        try:
+            name = sys.argv[2]
+        except IndexError:
+            print('Отсутсвуте название файла')
+        else:
+            delete_file(name)
+    elif command == 'copy':
+        try:
+            name = sys.argv[2]
+            new_name = sys.argv[3]
+        except IndexError:
+            print('Отсутсвуте название файла')
+        else:
+            copy_file(name, new_name)
+    elif command == 'c_dir':    # --------- СМЕНА ПАПКИ ------------
+        try:
+            name = sys.argv[2]
+        except IndexError:
+            print('Отсутсвуте название файла')
+        else:
+            change_dir(name)
+    elif command == 'game':     # ------------- ИГРА --------------
+        try:
+            game_n = sys.argv[2]
+        except IndexError:
+            print('У нас аж 2 игры. Выберите игру.')
+        else:
+           if sys.argv[2] == 1:
+               game_number()
+           elif sys.argv[2] == 2:
+               game()
+    elif command == 'help':
+        print('list - список файлов и папок')
+        print('create_file - создание файла')
+        print('create_folder - создание папки')
+        print('delete - удаление файла или папки')
+        print('copy - копирование файла или папки')
+        print('c_dir - копирование файла или папки')
+        print('game - игра. 1 - вы загажываете число, 2 - компьютер загадывает число')
 
-
-save_info("End")
+save_info('конец')
