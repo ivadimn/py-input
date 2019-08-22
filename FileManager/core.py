@@ -60,9 +60,30 @@ def save_info(message):
     with open("log.txt", 'a', encoding="utf-8") as f:
         f.write(result + "\n")
 
+
 def play():
+    print("Компьютер буде угадывать задуманное Вами число!!")
+    input("Задумайте чило от 1 до 100 и нажмите Enter ")
+    number = 50
+    delta = number
+    result = None
+    while result != "=":
+        result = input(
+            "Ваше число {} если Ваше число больше введите '>' если меньше '<' если угадал '=' : ".format(number))
+        delta = delta // 2 + delta % 2
+        if result == ">":
+            number = number + delta
+        elif result == "<":
+            number = number - delta
+    print("Компьютер угадал число {} ".format(number))
 
 
-if __name__ == "__main__":
-    change_dir("/home/v")
-    get_list(True)
+def show_command():
+    print("Список доступных команд:")
+    print("Показать список файлов и каталогов: list [dir - если нужны только каталоги]")
+    print("Создать файл: create_file filename [текс для записи в файл]")
+    print("Создать каталог: create_folder foldername")
+    print("Копировать файл или каталог: copy source destination")
+    print("Удалить файл или каталог: delete filename")
+    print("Изменить текущий рабочий каталог: change foldername")
+    print("Поиграть с компьютером: play")
