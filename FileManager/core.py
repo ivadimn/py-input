@@ -1,6 +1,7 @@
 import os
 import shutil
 import datetime
+import sys
 
 
 def create_file(name, text=None):
@@ -46,10 +47,22 @@ def copy_file(name, new_name):
             print("Файл с именем {} не найден".format(name))
 
 
+def change_dir(name):
+    try:
+        os.chdir(name)
+    except FileNotFoundError:
+        print("Каталога с именем: {} не существует".format(name))
+
+
 def save_info(message):
     current_time = datetime.datetime.now();
     result = "{} - {}".format(current_time, message)
     with open("log.txt", 'a', encoding="utf-8") as f:
         f.write(result + "\n")
 
+def play():
 
+
+if __name__ == "__main__":
+    change_dir("/home/v")
+    get_list(True)
