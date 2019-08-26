@@ -33,7 +33,7 @@ print(list(reversed(list_frequent[-10:])))
 print("----------------------------------------------------------------------------------")
 
 # 4. Отберите все ссылки.
-links = re.findall("[\w\./]+/\w+", text)
+links = re.findall("([\w\./]+/\w+|[a-z0-9\.]+\.{1}[ru|com|net|org]+)", text)
 print("---------------------Ссылки на ресурсы")
 print(links)
 
