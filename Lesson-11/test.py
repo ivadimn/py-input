@@ -10,3 +10,6 @@ links = re.findall("([\w\./]+/\w+|[a-z0-9\.]{4,}\.{1}[ru|com|net|org]+)", text)
 #links = re.findall("[\w\./]+/\w+", text)
 print("---------------------Ссылки на ресурсы")
 print(links)
+
+
+print(re.findall("стран", text))
