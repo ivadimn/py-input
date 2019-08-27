@@ -21,7 +21,6 @@ def sort_col(li):
 words = re.findall("\w{4,}", text)
 words_set = set(words)
 word_str = " ".join(words)
-
 list_frequent = []
 for word in words_set:
     wl = re.findall(word, word_str)
@@ -33,14 +32,15 @@ print(list(reversed(list_frequent[-10:])))
 print("----------------------------------------------------------------------------------")
 
 # 4. Отберите все ссылки.
-links = re.findall("([\w\./]+/\w+|[a-z0-9\.]+\.{1}[ru|com|net|org]+)", text)
+links = re.findall("([\w\./]+/\w+|[a-z0-9\.]{4,}\.{1}[ru|com|net|org]+)", text)
 print("---------------------Ссылки на ресурсы")
 print(links)
 
 # 5 Ссылки на страницы какого домена встречаются чаще всего
 print("-----------------------------------------------------------")
 domen_frequent = []
-domens = [domen[:domen.find("/")] for domen in links]
+domens = [domen[:domen.find("/")] if domen.find("/") > 0 else domen for domen in links]
+
 domens_set = set(domens)
 domens_str = " ".join(domens)
 for domen in domens_set:
@@ -50,5 +50,5 @@ print("Самый часто встречающийся ресурс : ", max(do
 
 #6 Замените все ссылки на текст «Ссылка отобразится после регистрации».
 print("------------------------ Текст после замены ссылок")
-changed_text = re.sub("[\w\./]+/\w+", "Ссылка отобразится после регистрации", text)
+changed_text = re.sub("([\w\./]+/\w+|[a-z0-9\.]{4,}\.{1}[ru|com|net|org]+)", "Ссылка отобразится после регистрации", text)
 print(changed_text)
