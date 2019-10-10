@@ -8,9 +8,10 @@ mos_metro = "Список_станций_Московского_метропол
 def get_topic_links(topic):
     html_content = get_topic_page(topic)
     soup = BS(html_content, "html.parser")
-    links = soup.find_all("a")
-    hrs = [n.get("href", "") for n in links]
-    return hrs
+    links = soup.find_all("tr")
+    print(links)
+    #hrs = [n.get("", "") for n in links]
+    #//return hrs
 
 def get_topic_tables(topic):
     html_content = get_topic_page(topic)
@@ -43,6 +44,12 @@ def get_neighbo_pages(topic):
 
 
 def main():
+<<<<<<< Updated upstream
     tables = get_topic_tables(mos_metro)
+=======
+    get_topic_links("")
+
+
+>>>>>>> Stashed changes
 
 main()
