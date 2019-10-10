@@ -2,6 +2,7 @@ from wiki_requests import get_topic_page
 
 from bs4 import BeautifulSoup as BS
 
+mos_metro = "Список_станций_Московского_метрополитена"
 
 # Получить список ссылок
 def get_topic_links(topic):
@@ -11,6 +12,17 @@ def get_topic_links(topic):
     hrs = [n.get("href", "") for n in links]
     return hrs
 
+def get_topic_tables(topic):
+    html_content = get_topic_page(topic)
+    soup = BS(html_content, "html.parser")
+    tables = soup.find_all("table")
+    tbs = soup.select("table.standard");
+    for t in tbs:
+        trs = t.select("tr")
+        print(len(trs))
+    hrs = [t.get("class", "") for t in tables]
+    print(hrs)
+    return hrs
 
 # получить соседние ссылки
 def get_neighbo_links(topic):
@@ -31,14 +43,6 @@ def get_neighbo_pages(topic):
 
 
 def main():
-    topic = input("Topic : ")
-    pages = get_neighbo_pages(topic)
-    print("Получилось всего - ", len(pages), "соседних ссылок")
-    #распечатаем некоторые страницы
-    for p in pages[5:7]:
-        print("-----------------------------------------------------------------------------------------------")
-        print(p)
-
-
+    tables = get_topic_tables(mos_metro)
 
 main()
