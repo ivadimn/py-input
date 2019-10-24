@@ -1,6 +1,7 @@
 # 3. Сформировать из введенного числа обратное по порядку входящих в него цифр и вывести на экран.
 # Например, если введено число 3486, надо вывести 6843.
 
+
 def get_number(s: str) -> int:
     while True:
         try:
@@ -10,12 +11,12 @@ def get_number(s: str) -> int:
             continue
 
 
-str_num = str(get_number("Введите натуральное число : "))
-print(f"Введённое число = {str_num}")
-str_num = list(str_num)
-len_str = len(str_num)
-for i in range(0, len_str // 2):
-    temp = str_num[i]
-    str_num[i] = str_num[len_str - i - 1]
-    str_num[len_str - i - 1] = temp
-print(f"Обратное число = {''.join(str_num)}")
+number = get_number("Введите натуральное число : ")
+print(f"Введённое число = {number}")
+exp = len(str(number)) - 1
+reversed_number = 0
+while number > 0:
+    reversed_number += (number % 10) * (10 ** exp)
+    number //= 10
+    exp -= 1
+print(f"Обратное число = {reversed_number}")

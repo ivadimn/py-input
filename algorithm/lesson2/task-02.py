@@ -11,14 +11,15 @@ def get_number(s: str) -> int:
             continue
 
 
-str_num = str(get_number("Введите натуральное число : "))
-even = []
-odd = []
-for i in range(0, len(str_num)):
-    if int(str_num[i]) % 2 == 0:
-        even.append(int(str_num[i]))
+number = get_number("Введите натуральное число : ")
+even = 0
+odd = 0
+while number > 0:
+    if (number % 10) % 2 == 0:
+        even += 1
     else:
-        odd.append(int(str_num[i]))
+        odd += 1
+    number //= 10
 
-print(f"Количество чётных чисел = {len(even)} : {even}")
-print(f"Количество нечётных чисел = {len(odd)} : {odd}")
+print(f"Количество чётных чисел = {even}")
+print(f"Количество нечётных чисел = {odd}")
