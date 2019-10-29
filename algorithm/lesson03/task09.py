@@ -3,7 +3,7 @@ from random import randint
 
 size = 5
 matrix = [[randint(1, 50) for _ in range(size)] for _ in range(size)]
-min_columns = [0] * size;
+min_columns = [0] * size
 for j in range(size):
     min_in_column = matrix[0][j]
     for i in range(size):
