@@ -8,5 +8,5 @@ for i in range(2, 100):
             result[j - 2] += 1
 i = 0
 while i < len(result):
-    print(i+2, ' - ', result[i])
+    print(f"{i + 2}  - {result[i]}")
     i += 1
