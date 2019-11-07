@@ -6,11 +6,19 @@
 # # Количество элементов (n) передаётся параметром.
 
 # 1 Вариант: - сложение членов последовательности
+import sys
+from funcs import show_sizeof
 
-import common
+print(sys.platform)
+print(sys.version)
 
 q = -0.5
 summa = 0
-
-for i in range(0, 100):
+show_sizeof(q)
+show_sizeof(summa)
+for i in range(0, 1000):
     summa += q ** i
+show_sizeof(summa)
+show_sizeof(range(0, 1000))
+print(sys.getsizeof(range(0, 1000)))
+show_sizeof(summa)
