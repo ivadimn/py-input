@@ -7,18 +7,18 @@ def show_sizeof(x, level=0):
         if hasattr(x, 'items'):
             for xx in x.items():
                 show_sizeof(xx, level + 1)
-        else:
+        elif not isinstance(x, str):
             for xx in x:
                 show_sizeof(xx, level + 1)
 
-
+#подсчитывает общий размер объекта
 def sizeof(x):
-    size = sys.getsizeof()
-    print("\t" * level, x.__class__, sys.getsizeof(x), x)
+    size = sys.getsizeof(x)
     if hasattr(x, '__iter__'):
         if hasattr(x, 'items'):
             for xx in x.items():
-                show_sizeof(xx, level + 1)
-        else:
+                size += sizeof(xx)
+        elif not isinstance(x, str):
             for xx in x:
-                show_sizeof(xx, level + 1)
+                size += sizeof(xx)
+    return size
