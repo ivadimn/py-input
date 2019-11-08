@@ -14,11 +14,18 @@ print(sys.version)
 
 q = -0.5
 summa = 0
-show_sizeof(q)
-show_sizeof(summa)
-for i in range(0, 1000):
+print(f"Адрес summa - {id(summa)}")
+print(f"Адрес q - {id(q)}")
+for i in range(0, 100):
     summa += q ** i
+
+print(f"Адрес summa - {id(summa)}")
+print(f"Адрес q - {id(q)}")
+
+show_sizeof(q)
+show_sizeof(range(0, 100))
 show_sizeof(summa)
-show_sizeof(range(0, 1000))
-print(sys.getsizeof(range(0, 1000)))
-show_sizeof(summa)
+
+# платформа - linux 64 разряда
+# Python версия 3.7.3 (default, Mar 27 2019, 22:11:17)
+#[GCC 7.3.0]
