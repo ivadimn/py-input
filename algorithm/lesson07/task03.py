@@ -11,12 +11,7 @@ print(array)
 
 
 def select(a, k):
-    """
-    Выбираем k-тый элемент в списке l (с нулевой базой)
-    :param a: список числовых данных
-    :param k: индекс
-    :return: k-тый элемент l
-    """
+    
     if len(a) == 1:
         return a[0]
 

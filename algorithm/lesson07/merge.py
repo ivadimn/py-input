@@ -1,8 +1,10 @@
+import sys
+
 def merge(a, b, mid, e):
     left = a[b:mid+1]
     right = a[mid + 1:e+1]
-    print(left)
-    print(right)
+    left.append(sys.maxsize)
+    right.append(sys.maxsize)
     idx = b
     i = j = 0
     while idx < e:
@@ -13,8 +15,6 @@ def merge(a, b, mid, e):
             a[idx] = right[j]
             j += 1
         idx += 1
-    a[idx] = left[i] if i < j else right[j]
-    print(a)
 
 
 
