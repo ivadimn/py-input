@@ -11,7 +11,7 @@ print(array)
 
 
 def select(a, k):
-    
+
     if len(a) == 1:
         return a[0]
 
