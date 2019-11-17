@@ -11,7 +11,7 @@ def generate_graph(n: int) -> list:
         g.append([j for j in range(n) if i != j])
     return g
 
-def dfs(g, v, visited):
+def dfs(g : list, v: int, visited: list) -> list:
     if v not in visited:
         visited.append(v)
         for n in g[v]:
