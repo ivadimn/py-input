@@ -51,11 +51,13 @@ def period_pizano1(m):
     f2 = 1
     fn = f1 + f2
     mod = fn % m
-    while not (mods[len(mods) - 1] == mods[0] and mod == mods[1]):
+    l = len(mods) - 1
+    while not (mods[l] == 0 and mod == 1):
         mods.append(mod)
-        f1, f2 = f2, fn
-        fn = f1 + f2
-        mod = fn % m
+        l += 1
+        f1, f2 = f2, (f1 + f2)
+        mod = (f1 + f2)  % m
+
     return mods[:len(mods) - 1]
 
 
@@ -84,11 +86,19 @@ print(matrix_mult(M1, M2))
 
 
 
+
+
 m = 100000
 n = 1000000000000000000
+print(bin(n - 1))
+#powers = [int(pow(2, b))
+#for (b, d) in enumerate(reversed(bin(n-1)[2:])):
+#    print(b, d)
+    #if d == '1'
+#print(powers)
 #print(fib(100) % 7)
 #print(fib(n))
 #print(period_pizano1(m))
-#print(fib_mod(n, m))
+print(fib_mod(n, m))
 
 #print(fib_mod(100, 7))
