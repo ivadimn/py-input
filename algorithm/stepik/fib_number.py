@@ -1,3 +1,6 @@
+import cProfile
+
+
 def fib(n):
     if n == 0:
         return 0
@@ -55,8 +58,8 @@ def period_pizano1(m):
     while not (mods[l] == 0 and mod == 1):
         mods.append(mod)
         l += 1
-        f1, f2 = f2, (f1 + f2)
-        mod = (f1 + f2)  % m
+        f1, f2 = f2, f1 + f2
+        mod = (f1 + f2) % m
 
     return mods[:len(mods) - 1]
 
@@ -65,40 +68,8 @@ def fib_mod(n, m):
    mods = period_pizano1(m)
    return mods[n % len(mods)]
 
-
-def matrix_mult(m1, m2):
-    pm = [[0, 0], [0, 0]]
-    for i in range(2):
-        for j in range(2):
-            for k in range(2):
-                pm[i][j] += m1[i][k] * m2[k][j]
-    return pm
-
-
-M1 = [[1, 1], [1, 0]]
-M2 = [[1, 1], [1, 0]]
-a11 = M1[0][0]*M2[0][0] + M1[0][1]*M2[1][0]
-a12 = M1[0][0]*M2[0][1] + M1[0][1]*M2[1][1]
-a21 = M1[1][0]*M2[0][0] + M1[1][1]*M2[1][0]
-a22 = M1[1][0]*M2[0][1] + M1[1][1]*M2[1][1]
-print([[a11, a12], [a21, a22]])
-print(matrix_mult(M1, M2))
-
-
-
-
-
 m = 100000
 n = 1000000000000000000
-print(bin(n - 1))
-#powers = [int(pow(2, b))
-#for (b, d) in enumerate(reversed(bin(n-1)[2:])):
-#    print(b, d)
-    #if d == '1'
-#print(powers)
-#print(fib(100) % 7)
-#print(fib(n))
-#print(period_pizano1(m))
 print(fib_mod(n, m))
 
-#print(fib_mod(100, 7))
+#cProfile.run("fib_mod(n, m)")
