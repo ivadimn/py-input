@@ -1,6 +1,6 @@
 import cProfile
-n = 1000000000000000000
-m = 100000
+n = 8
+m = 4
 
 
 def period_pisano(n, m):
