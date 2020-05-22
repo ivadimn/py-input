@@ -17,7 +17,7 @@ def get_topic_tables(topic):
     html_content = get_topic_page(topic)
     soup = BS(html_content, "html.parser")
     tables = soup.find_all("table")
-    tbs = soup.select("table.standard");
+    tbs = soup.select("table.standard")
     for t in tbs:
         trs = t.select("tr")
         print(len(trs))
@@ -44,12 +44,7 @@ def get_neighbo_pages(topic):
 
 
 def main():
-<<<<<<< Updated upstream
     tables = get_topic_tables(mos_metro)
-=======
     get_topic_links("")
-
-
->>>>>>> Stashed changes
 
 main()
