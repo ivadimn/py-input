@@ -1,5 +1,7 @@
 import pandas as pd
 
+file_trud = "/home/vadim/test.csv"
+
 def filter_groups(groups):
     print(len(groups))
     tn = []
@@ -9,6 +11,7 @@ def filter_groups(groups):
             tn.append(name)
             count.append(len(group))
     return tn, count
+
 
 df = pd.read_csv("nadym.csv", sep=";")
 df_group = df.groupby("tn")
