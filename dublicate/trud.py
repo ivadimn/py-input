@@ -1,6 +1,7 @@
 import pandas as pd
 
 file_trud = "/home/vadim/trud.csv"
+file_addr = "/home/vadim/addr.csv"
 orgs = {
     'ООО "Газпром добывча Астрахань"' : 'Газпром добыча Астрахань',
     'ООО "Газпром добывча Иркутск"' : 'Газпром добыча Иркутск',
@@ -24,7 +25,7 @@ orgs = {
     'OOO "Газпром ПХГ"': 'Газпром ПХГ',
     'OOO "Газпром переработка"' : 'Газпром переработка'
 }
-def filter_groups_trud(groups):
+def filter_groups(groups):
     print(len(groups))
     tn = []
     count =[]
@@ -34,30 +35,42 @@ def filter_groups_trud(groups):
             count.append(len(group))
     return tn, count
 org_names = []
-total_counts = []
-error_count = []
-persent = []
+total_trud_counts = []
+error_trud_count = []
+persent_trud = []
+total_addr_counts = []
+error_addr_count = []
+persent_addr = []
 
 df = pd.read_csv(file_trud, sep=";")
+dfa = pd.read_csv(file_addr, sep=";")
 print(df.head())
-"""for org_name,file_name in orgs.items():
-   df_org = 
-   df_group = df.groupby("tn")
+for org_name, balanc_name in orgs.items():
+   df_org = df[df.org == balanc_name]
+   df_group = df_org.groupby("tn")
    org_names.append(org_name)
-   total_counts.append(len(df))
-   tn_list, count_list = filter_groups_trud(df_group)
-   error_count.append(len(tn_list))
-   persent.append((len(tn_list) * 100.0) / len(df))
+   total_trud_counts.append(len(df_org))
+   tn_list, count_list = filter_groups(df_group)
+   error_trud_count.append(len(tn_list))
+   persent_trud.append(round((len(tn_list) * 100.0) / len(df_org), 2))
+
+   df_org = dfa[dfa.org == balanc_name]
+   df_group = df_org.groupby("tn")
+   total_addr_counts.append(len(df_org))
+   tn_list, count_list = filter_groups(df_group)
+   error_addr_count.append(len(tn_list))
+   persent_addr.append(round((len(tn_list) * 100.0) / len(df_org), 2))
 
 
 data = {"Дочернее общество": org_names,
-        "Общее количество табельных номиеров": total_counts,
-        "Количество табельных номиеров с ошибками": error_count,
-        "Процент": persent
+        "Общее количество табельных номеров (трудовая деятельность)": total_trud_counts,
+        "Ошибки в трудовой деятельности": error_trud_count,
+        "Процент труд. деятельность": persent_trud,
+        "Общее количество табельных номеров (адреса)": total_addr_counts,
+        "Ошибки в адресах": error_addr_count,
+        "Процент адреса": persent_addr
         }
-#print(org_names)
-#print(total_counts)
-#print(error_count)
-#print(persent)
+
 df_tn = pd.DataFrame(data)
-print(df_tn)"""
+print(df_tn)
+df_tn.to_csv("/home/vadim/errors.csv", sep=";", decimal=",")
