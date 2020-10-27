@@ -1,16 +1,16 @@
 import pandas as pd
 import os
 
-fpath = 'C:\\github\\trud.csv'
-fpath_convert = 'C:\\github\\trud1.csv'
+fpath = '/home/vadim/errors.csv'
+fpath_convert = '/home/vadim/errors1.csv'
 file_trud = ""
 
 print("started")
 fc = open(fpath_convert, "wb")
 with open(fpath, "rb") as ft:
     for content in ft:
-        convert = content.decode(encoding="cp1251")
-        fc.write(convert.encode(encoding="UTF-8"))
+        convert = content.decode(encoding="UTF-8")
+        fc.write(convert.encode(encoding="cp1251"))
 fc.flush()
 fc.close()
 print("finished")
