@@ -19,9 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50b39186-4972-4024-a4e4-86e9b57f0477" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="50b39186-4972-4024-a4e4-86e9b57f0477" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,7 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/01 python-study/skillbox-async-chat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OOP" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -198,10 +196,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="726" y="282" width="317" height="315" key="FileChooserDialogImpl" timestamp="1606767319036">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="484" y="184" width="317" height="315" key="FileChooserDialogImpl" timestamp="1607360647407">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="484" y="184" width="317" height="315" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1603291445582" />
+    <state x="484" y="184" width="317" height="315" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607360647407" />
     <state x="726" y="282" width="424" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606767319036" />
     <state width="1379" height="264" key="GridCell.Tab.0.bottom" timestamp="1603789461157">
       <screen x="0" y="0" width="1920" height="1040" />
