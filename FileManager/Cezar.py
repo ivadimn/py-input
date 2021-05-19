@@ -6,16 +6,20 @@ dict = ["А", "а", "Б", "б", "В", "в", "Г", "г", "Д", "д", "Е", "е", 
         "Я", "я", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "?", "!",".", ",", " "]
 
 phraz = "йХСЛЧЪЁ ,ЁТЛЩД"
+phraz2 = "шИРКНЗМЧУНЩЬЗЪЫЧФ?УЧЗФНЫЕ"
+l = len(dict)
+codes = [dict.index(ch) for ch in phraz2]
+print(codes)
 
-codes = [ dict.index(ch) for ch in phraz ]
-for delta in range(len(dict)):
+for delta in range(l):
     shift = []
     decode = []
     for code in codes:
-        newcode = code + delta
-        if newcode >=  len(dict):
-            newcode = delta - code
-        shift.append(newcode)
+        new_code = code + delta
+        if new_code >= len(dict):
+            new_code = new_code - l
+        #print(new_code)
+        shift.append(new_code)
     for sh in shift:
         decode.append(dict[sh])
-    print("".join(decode))
+    print("".join(decode), delta)

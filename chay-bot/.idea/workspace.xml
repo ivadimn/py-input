@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="82e16b59-6812-4968-b8bc-831abceabb0e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../dublicate/.idea/dublicate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../dublicate/.idea/dublicate.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../dublicate/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/chaik_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/ekat_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/moskva_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/nnovgorod_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/pererab_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/phg_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/samara_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/saratov_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/surgut_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/tomsk_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/ufa_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/ugorsk_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/uhta_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/data/volgograd_trud.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../dublicate/trud.py" beforeDir="false" afterPath="$PROJECT_DIR$/../dublicate/one_org.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +28,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/ii/Методы сбора и обработки данных в сети интернет/05 Scrapy" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
@@ -96,5 +80,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -1,5 +1,6 @@
 import os
 import json
+#from unittest import mock
 my_list = ["aaaa", "bbbbb", "cccc", "ddddd", "eeeeee"]
 #print(my_list[3:])
 
@@ -27,17 +28,18 @@ class TimeHelper:
 
 def test_seconds_day():
     th = TimeHelper
-    th.seconds_hour = lambda : 1
+    th.seconds_hour = lambda: 1
     assert th.seconds_day() == 24
 
 def test_seconds_month():
     th = TimeHelper
-    th.count_day = lambda x, y : 1
+    th.count_day = lambda x, y: 1
     assert th.seconds_month(1, 1) == 24
 
+
 #print(28 * 3600 * 24)
-#test_seconds_day()
-#test_seconds_month()
+test_seconds_day()
+test_seconds_month()
 
 my_generator = ( i for i in range(10))
 
