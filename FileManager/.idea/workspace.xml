@@ -19,7 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50b39186-4972-4024-a4e4-86e9b57f0477" name="Default Changelist" comment="" />
+    <list default="true" id="50b39186-4972-4024-a4e4-86e9b57f0477" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/FileManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FileManager.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +50,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OOP" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -53,7 +58,28 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.convert">
+  <component name="RunManager" selected="Python.Cezar">
+    <configuration name="Cezar" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="FileManager" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Cezar.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="convert" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="FileManager" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -117,27 +143,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FileManager" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3.5" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="FileManager" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -145,7 +150,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="/usr/bin/python3.5" />
+      <option name="SDK_HOME" value="/usr/bin/python3.8" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -159,13 +164,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.convert" />
+      <item itemvalue="Python.core" />
+      <item itemvalue="Python.dublicate" />
+      <item itemvalue="Python.test" />
+      <item itemvalue="Python.Cezar" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.Cezar" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.convert" />
         <item itemvalue="Python.dublicate" />
-        <item itemvalue="Python.test" />
         <item itemvalue="Python.core" />
-        <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
   </component>
@@ -194,36 +206,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="726" y="282" width="503" height="481" key="FileChooserDialogImpl" timestamp="1611065772746">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="484" y="184" width="317" height="315" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607360647407" />
-    <state x="726" y="282" width="503" height="481" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1611065772746" />
-    <state width="1379" height="264" key="GridCell.Tab.0.bottom" timestamp="1603789461157">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1259" height="107" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1603309737926" />
-    <state width="1379" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603789461157" />
-    <state width="1379" height="264" key="GridCell.Tab.0.center" timestamp="1603789461157">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1259" height="107" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1603309737926" />
-    <state width="1379" height="264" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603789461157" />
-    <state width="1379" height="264" key="GridCell.Tab.0.left" timestamp="1603789461157">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1259" height="107" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1603309737926" />
-    <state width="1379" height="264" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603789461157" />
-    <state width="1379" height="264" key="GridCell.Tab.0.right" timestamp="1603789461157">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="1259" height="107" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1603309737926" />
-    <state width="1379" height="264" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603789461157" />
-    <state x="434" y="91" width="1226" height="815" key="SettingsEditor" timestamp="1603373118699">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="434" y="91" width="1226" height="815" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603373118699" />
   </component>
 </project>
