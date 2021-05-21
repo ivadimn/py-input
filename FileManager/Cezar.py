@@ -22,4 +22,4 @@ for delta in range(l):
         shift.append(new_code)
     for sh in shift:
         decode.append(dict[sh])
-    print("".join(decode), delta)
+    print("".join(decode), delta, dict[delta] )
