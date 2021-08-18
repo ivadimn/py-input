@@ -20,10 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="50b39186-4972-4024-a4e4-86e9b57f0477" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/FileManager.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FileManager.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,11 +162,11 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.Cezar" />
       <item itemvalue="Python.convert" />
       <item itemvalue="Python.core" />
       <item itemvalue="Python.dublicate" />
       <item itemvalue="Python.test" />
-      <item itemvalue="Python.Cezar" />
     </list>
     <recent_temporary>
       <list>
