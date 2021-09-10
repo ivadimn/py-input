@@ -21,12 +21,14 @@ while number > 0:
 print("Количество десятичных знаков: ", count_digit)"""
 
 
-"""4 count_even = 0
+""" 4 count_even = 0
 while True:
     number = int(input("Введите очередное число последовательности или 0 для завершения: "))
     if number == 0:
         break
-    if number % 2 == 0:
+    elif number % 2 > 0:
+        continue
+    else:
         count_even += 1
 print("Количество чётных чисел в последовательности: ", count_even)"""
 
@@ -47,7 +49,7 @@ if first_summa == second_summa:
 else:
     print("К сожалению билет не счастливый")"""
 
-"""6 count_positive = 0
+"""count_positive = 0
 count_negative = 0
 while True:
     number = int(input("Введите число (или 0 для завершения): "))
@@ -108,13 +110,16 @@ while True:
     print("Твоё число равно(1), больше(2) или меньше(3), чем число", number, "?")
     result = int(input())
     count_step += 1
-    if result == 2:
+    if result == 1:
+        print("Я угадал число:", number, "c", count_step, "попыток")
+        break
+    elif result == 2:
         low = number + 1
     elif result == 3:
         high = number - 1
     else:
-        print("Я угадал число:", number, "c", count_step, "попыток")
-        break
+        print("Введено неверное значение, будте анимательней!!!")
+
 
 
 
