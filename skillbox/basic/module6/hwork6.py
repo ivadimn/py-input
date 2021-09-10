@@ -1,10 +1,10 @@
-"""number = int(input("Введите конечное число: "))
+""" 1 number = int(input("Введите конечное число: "))
 number_count = 1
 while number_count <= number:
     print(number_count ** 3)
     number_count += 1"""
 
-"""name = input("Имя должника? ")
+"""2 name = input("Имя должника? ")
 summa = int(input("Сумма долга? "))
 while summa > 0:
     repay = int(input("Сколько рублей вы внесёте прямо сейчас, чтобы её погасить? "))
@@ -13,7 +13,7 @@ while summa > 0:
         print("Маловато,", name + ".",  "Давайте ещё раз")
 print("Отлично,", name + "!", "Вы погасили долг. Спасибо!")"""
 
-"""number = int(input("Введите число: "))
+"""3 number = int(input("Введите число: "))
 count_digit = 0
 while number > 0:
     number //= 10
@@ -21,7 +21,7 @@ while number > 0:
 print("Количество десятичных знаков: ", count_digit)"""
 
 
-"""count_even = 0
+"""4 count_even = 0
 while True:
     number = int(input("Введите очередное число последовательности или 0 для завершения: "))
     if number == 0:
@@ -31,7 +31,7 @@ while True:
 print("Количество чётных чисел в последовательности: ", count_even)"""
 
 
-"""ticket_number = int(input("Введите номер билета (6 цифр): "))
+"""5 ticket_number = int(input("Введите номер билета (6 цифр): "))
 first_summa = 0
 second_summa = 0
 while ticket_number > 0:
@@ -47,13 +47,13 @@ if first_summa == second_summa:
 else:
     print("К сожалению билет не счастливый")"""
 
-"""count_positive = 0
+"""6 count_positive = 0
 count_negative = 0
 while True:
     number = int(input("Введите число (или 0 для завершения): "))
     if number == 0:
         break
-    if number > 0:
+    elif number > 0:
         count_positive += 1
     else:
         count_negative += 1
