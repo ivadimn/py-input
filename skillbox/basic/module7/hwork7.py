@@ -53,7 +53,7 @@ number = int(input("Введите число: "))
 factorial = 1
 for n in range(2, number + 1):
     factorial *= n
-print("Факториал числа", number, "равен",  factorial)"""
+print("Факториал числа", number, "равен",  factorial)
 
 pupils = int(input("Сколько учеников в классе? "))
 total_excellent = 0
@@ -83,3 +83,49 @@ elif total_excellent == total_bad and total_excellent > total_good:
     print("сегодня больше всего отличников и троечников")
 else:
     print("Сегодня всех поровну")
+
+a = int(input("Введите начало отрезка: "))
+b = int(input("Введите конец отрезка: "))
+summ = 0
+count_right = 0
+for n in range(a, b + 1):
+    if n % 3 == 0:
+        summ += n
+        count_right += 1
+if count_right > 0:
+    print("Cреднее арифметическое всех чисел из отрезка [", a, ";", b, "], которые кратны числу 3: ", summ / count_right)
+else:
+    print("Чисел кратных 3 нет")
+
+for number in range(10, 100):
+    local_number = number
+    mult = 1
+    while local_number > 0:
+        digit = local_number % 10
+        mult *= digit
+        local_number //= 10
+    if (mult * 3) == number:
+        print("Замечательное число: ", number)
+
+is_sort = True
+prev_number = -1
+for n in range(10):
+    number = int(input("Введите число: "))
+    if number < prev_number:
+        is_sort = False
+    prev_number = number
+if is_sort:
+    print("Числа упорядочены по возрастанию")
+else:
+    print("Числа не упорядочены по возрастанию")"""
+
+summ = 0
+count_cards = int(input("Введите количество карточек: "))
+for n in range(count_cards - 1):
+    print("Введите номер карточки от", 1, "до", count_cards, ": ", end="")
+    card_number = int(input())
+    summ += card_number
+summ_all = 0
+for card in range(1, count_cards + 1):
+    summ_all += card
+print("Номер потерявшейся карточки= =", summ_all - summ)
