@@ -5,39 +5,22 @@ for number in 114,12,14,10605,4907,450:
     else:
         print(number, 'Не подходит')
 
-n1 = int(input("Введите первое число: "))
-n2 = int(input("Введите второе число: "))
-n3 = int(input("Введите третье число: "))
-n4 = int(input("Введите четвёртое число: "))
-n5 = int(input("Введите пятое число: "))
-n6 = int(input("Введите шестое число: "))
-n7 = int(input("Введите седьмое число: "))
-n8 = int(input("Введите восьмое число: "))
-n9 = int(input("Введите девято число: "))
-n10 = int(input("Введите десятое число: "))
 right_numbers = 0
-for n in n1,n2,n3,n4,n5,n6,n7,n8,n9,n10:
-    if n > 0 and n % 2 == 0:
+for n in range(1, 11):
+    print("Введите", n, "-е число: ", end="")
+    number = int(input())
+    if number > 0 and number % 2 == 0:
         right_numbers += 1
 print("Одновременно чётных и положительных чисел: ", right_numbers)
+"""
 
-s1 = int(input("Введите зарплату за 1 месяц: "))
-s2 = int(input("Введите зарплату за 2 месяц: "))
-s3 = int(input("Введите зарплату за 3 месяц: "))
-s4 = int(input("Введите зарплату за 4 месяц: "))
-s5 = int(input("Введите зарплату за 5 месяц: "))
-s6 = int(input("Введите зарплату за 6 месяц: "))
-s7 = int(input("Введите зарплату за 7 месяц: "))
-s8 = int(input("Введите зарплату за 8 месяц: "))
-s9 = int(input("Введите зарплату за 9 месяц: "))
-s10 = int(input("Введите зарплату за 10 месяц:: "))
-s11 = int(input("Введите зарплату за 11 месяц:: "))
-s12 = int(input("Введите зарплату за 12 месяц:: "))
 year_salary = 0
-for s in s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11,s12:
-    year_salary += s
+for m in range(1, 13):
+    print("Введите зарплату за", m, "-ый месяц: ", end="")
+    salary = int(input())
+    year_salary += salary
 print("Средняя зарплата за 12 месяцев составила: ", year_salary / 12)
-
+"""
 contrs = 0
 for sector in range(30, 36):
     print("Людей в", sector, "секторе: ", end="")
@@ -118,7 +101,7 @@ if is_sort:
     print("Числа упорядочены по возрастанию")
 else:
     print("Числа не упорядочены по возрастанию")"""
-
+"""
 summ = 0
 count_cards = int(input("Введите количество карточек: "))
 for n in range(count_cards - 1):
@@ -129,3 +112,4 @@ summ_all = 0
 for card in range(1, count_cards + 1):
     summ_all += card
 print("Номер потерявшейся карточки= =", summ_all - summ)
+"""
