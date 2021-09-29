@@ -51,7 +51,7 @@ while (way != "x") and (way != "X"):
     elif (way == "a") or (way == "A"):
         if pos_x > 0:
             pos_x -= 1
-    elif (way == "d") or (way == "d"):
+    elif (way == "d") or (way == "D"):
         if pos_x < length:
             pos_x += 1
 
@@ -68,7 +68,6 @@ for symbol in text + "0":
                 max_s = s_count
             s_count = 0
 print("Самая длинная последовательность:", max_s)
-"""
 
 text = input("Введите текст: ")
 max_word = 0
@@ -81,5 +80,41 @@ for symbol in text + " ":
     else:
         s_count += 1
 print("Длина самого длинного слова:", max_word)
+
+
+length = int(input("Введите общую длину колонтитула в символах: "))
+exclamatory_count = int(input("Введите желаемое количество восклицательных знаков: "))
+tilda_count = length - exclamatory_count
+print("~" * (tilda_count // 2), end="")
+print("!" * exclamatory_count, end="")
+if tilda_count % 2 == 0:
+    print("~" * (tilda_count // 2))
+else:
+    print("~" * (tilda_count // 2 + 1))
+
+
+string = input("Введите строку из 10 символов a и b: ")
+milk_volume = 0
+for index, symbol in enumerate(string):
+    if symbol == "b":
+        milk_volume += (index + 1) * 2
+print("За день произведено молока:", milk_volume)
+
+"""
+
+encrypt_word = input("Введите зашифрованное сщщбщение: ")
+result1 = ""
+result2 = ""
+index = 1
+for symbol in encrypt_word:
+    if index % 2 != 0:
+        result1 += symbol
+    else:
+        result2 = symbol + result2
+    index += 1
+print("Расшифрованное сообщение:", result1 + result2)
+
+
+
 
 
