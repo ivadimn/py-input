@@ -89,3 +89,33 @@ for row in range(1, height + 1):
            print(" ", end = "")
     print()
 """
+
+levels = int(input("Введите количество уровней: "))
+width = levels * 2
+number = 1
+
+for row in range(1, levels + 1):
+    prs = 0
+    spos = levels - row
+    for col in range(width):
+        if (col == spos) and (prs < row):
+           print(number, end = "")
+           number += 2
+           prs += 1
+           spos += 2
+        else:
+            print(" ", end="")
+    print()
+
+
+number = int(input("Введите число: "))
+width = number * 2
+for row in range(number):
+    for col in range(width):
+        if (col <= row):
+           print(number - col, end = "")
+        elif col >= width - row - 1:
+           print(col - number + 1, end = "")
+        else:
+            print(".", end="")
+    print()
