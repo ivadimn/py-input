@@ -54,7 +54,7 @@ elif earth_volum < volum:
     print("Объём планеты Земля меньше в (1/",round(relation, 3), ") =", round(1 / relation, 3),  "раз")
 else:
     print("Обэёмы равны!")
-"""
+
 
 low_bound = int(input("Нижняя граница: "))
 up_bound = int(input("Верхняя граница: "))
@@ -66,3 +66,16 @@ for t in range(low_bound, up_bound, step):
 else:
     farengeit = up_bound * 1.8 + 32
     print(up_bound, "\t", int(farengeit))
+"""
+
+print("Введите местополржение коня")
+horse_x = float(input("По горизонтали: "))
+horse_y = float(input("По вертикали: "))
+print("Введите местополржение точки на доске:")
+point_x = float(input("По горизонтали: "))
+point_y = float(input("По вертикали: "))
+horse_x = int(horse_x * 10)
+horse_y = int(horse_y * 10)
+point_x = int(point_x * 10)
+point_y = int(point_y * 10)
+print("Конь в клетке (", horse_x, ",", horse_y, "). Точка в клетке (", point_x, "," , point_y, ").")
