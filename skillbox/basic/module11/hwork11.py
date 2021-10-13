@@ -66,16 +66,45 @@ for t in range(low_bound, up_bound, step):
 else:
     farengeit = up_bound * 1.8 + 32
     print(up_bound, "\t", int(farengeit))
-"""
+
 
 print("Введите местополржение коня")
 horse_x = float(input("По горизонтали: "))
+while horse_x < 0 or horse_x > 0.8:
+    print("Вводимое значение должно быть больше 0 и меньше 0.8. Повторите попытку! ")
+    horse_x = float(input("По горизонтали: "))
+
 horse_y = float(input("По вертикали: "))
+while horse_y < 0 or horse_y > 0.8:
+    print("Вводимое значение должно быть больше 0 и меньше 0.8. Повторите попытку! ")
+    horse_y = float(input("По вертикали: "))
+
 print("Введите местополржение точки на доске:")
 point_x = float(input("По горизонтали: "))
+while point_x < 0 or point_x > 0.8:
+    print("Вводимое значение должно быть больше 0 и меньше 0.8. Повторите попытку! ")
+    point_x = float(input("По горизонтали: "))
+
 point_y = float(input("По вертикали: "))
+while point_y < 0 or  point_y > 0.8:
+    print("Вводимое значение должно быть больше 0 и меньше 0.8. Повторите попытку! ")
+    point_y = float(input("По вертикали: "))
+
 horse_x = int(horse_x * 10)
 horse_y = int(horse_y * 10)
 point_x = int(point_x * 10)
 point_y = int(point_y * 10)
 print("Конь в клетке (", horse_x, ",", horse_y, "). Точка в клетке (", point_x, "," , point_y, ").")
+if ((abs(point_x - horse_x) == 1) and (abs(point_y - horse_y) == 2)) \
+        or ((abs(point_x - horse_x) == 2) and (abs(point_y - horse_y) == 1)):
+    print("Да, конь может ходить в эту точку.")
+else:
+    print("Нет, конь не может ходить в эту точку.")
+"""
+
+# при повороте часовой стрелки на 1 градус
+# минутная стрелка поворачивается на 12 градусов
+hour_hand_angle = float(input("Введите угол, на который повернулась часовая стрелка: "))
+minute_hand_angle = (hour_hand_angle % 30) * 12
+print("Минутная стрелка с начала последнего часа повернулась на", minute_hand_angle, "градусов" )
+
