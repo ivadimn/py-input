@@ -100,11 +100,32 @@ if ((abs(point_x - horse_x) == 1) and (abs(point_y - horse_y) == 2)) \
     print("Да, конь может ходить в эту точку.")
 else:
     print("Нет, конь не может ходить в эту точку.")
-"""
 
 # при повороте часовой стрелки на 1 градус
 # минутная стрелка поворачивается на 12 градусов
-hour_hand_angle = float(input("Введите угол, на который повернулась часовая стрелка: "))
-minute_hand_angle = (hour_hand_angle % 30) * 12
+hours_hand_angle = float(input("Введите угол, на который повернулась часовая стрелка: "))
+bound_hour_angle = hours_hand_angle % 30
+minute_hand_angle = bound_hour_angle  * 12 + 360 * int(abs(math.sin((90 + bound_hour_angle) * (math.pi / 180)))) \
+                    * math.ceil(abs(math.sin(hours_hand_angle) * (math.pi / 180)))
 print("Минутная стрелка с начала последнего часа повернулась на", minute_hand_angle, "градусов" )
+
+
+print("Введите коэффитценты квадратного уравнения (ax^2 + bx + c = 0)")
+a = float(input("Коэффициент a: "))
+b = float(input("Коэффициент b: "))
+c = float(input("Коэффициент c: "))
+d = b ** 2 - 4 * a * c
+if d > 0:
+    x1 = (-b + math.sqrt(d)) / (2 * a)
+    x2 = (-b - math.sqrt(d)) / (2 * a)
+    print(x2, x1)
+elif d == 0:
+    x = -(b / (2 * a))
+    print(x)
+"""
+a = int(input("Введите первое число: "))
+b = int(input("Введите второе число: "))
+max = ((a + b) + abs(a - b)) / 2
+print(int(max))
+
 
