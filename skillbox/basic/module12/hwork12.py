@@ -142,16 +142,132 @@ nod(a, b)
 
 def rock_paper_scissors():
     word = input("Введите строку: ")
-    comp = random.randint(1, 3)
-
-
+    n = random.randint(1, 3)
+    if n == 1:    # у компьютера камень
+        if word.lower() == "ножницы":
+            print("Вы проиграли, у компьютера КАМЕНЬ!")
+        elif word.lower() == "бумага":
+            print("Вы выиграли, у компьютера КАМЕНЬ!")
+        elif word.lower() == "камень":
+            print("Ничья, у компьютера тоже КАМЕНЬ!")
+        else:
+            print("Ошибка, необходимо ввести камень, ножницы или бумага")
+    elif n == 2: # у компьютера ножницы
+        if word.lower() == "бумага":
+            print("Вы проиграли, у компьютера НОЖНИЦЫ!")
+        elif word.lower() == "камень":
+            print("Вы выиграли, у компьютера НОЖНИЦЫ!")
+        elif word.lower() == "ножницы":
+            print("Ничья, у компьютера тоже НОЖНИЦЫ!")
+        else:
+            print("Ошибка, необходимо ввести камень, ножницы или бумага")
+    else:  # у компьютера бумага
+        if word.lower() == "камень":
+            print("Вы проиграли, у компьютера БУМАГА!")
+        elif word.lower() == "ножницы":
+            print("Вы выиграли, у компьютера БУМАГА!")
+        elif word.lower() == "бумага":
+            print("Ничья, у компьютера тоже БУМАГА!")
+        else:
+            print("Ошибка, необходимо ввести камень, ножницы или бумага")
+    mainMenu()
 
 def guess_the_number():
-    #Здесь будет игра "Угадай число"
+    comp_number = random.randint(1, 10)
+    while True:
+        number = int(input("Введите число от 1 до 10: "))
+        if number == comp_number:
+            print("Поздравляю вы верно угадала число: ", number)
+            break
+        else:
+            print("Сожалею вы не угадали, попытайтесь ещё раз!")
+    mainMenu()
 
 def mainMenu():
-    #Здесь главное меню игры
+    print("\nВыберите игру в которую будем играть.")
+    print("1. Камень, ножницы, бумага!")
+    print("2. Угадай число!")
+    print("3. Выход!")
+    game = int(input())
+    if game == 1:
+        rock_paper_scissors()
+    elif game == 2:
+        guess_the_number()
+    elif game != 3:
+        print("Не правильный выбор...")
+        mainMenu()
 
 mainMenu()
 
-print(random.randint(1, 3))
+
+def inBedroom():
+    print("Вы в спальне. Куда идём?")
+    print("1 - в ванну")
+    print("2 - в коридор")
+    where = int(input())
+    if where == 1:
+        inBathroom()
+    elif where == 2:
+        inHall()
+    else:
+        print("Такого направления нет!")
+        inBedroom()
+
+def inKitchen():
+    print("Вы в кухне. Куда идём?")
+    print("1 - в коридор")
+    print("2 - в окно")
+    where = int(input())
+    if where == 1:
+        inHall()
+    elif where == 2:
+        print("Вы упали и разбились!")
+    else:
+        print("Такого направления нет!")
+        inKitchen()
+
+
+def inHall():
+    print("Вы в коридоре. Куда идём?")
+    print("1 - в спальню")
+    print("2 - в ванну")
+    print("3 - на кухню")
+    print("4 - в дверь")
+    where = int(input())
+    if where == 1:
+        inBedroom()
+    elif where == 2:
+        inBathroom()
+    elif where == 3:
+        inKitchen()
+    elif where == 4:
+        print("Вы покинули квартиру!")
+    else:
+        print("Такого направления нет!")
+        inHall()
+
+def inBathroom():
+    print("Вы в ванне. Куда идём?")
+    print("1 - в коридор")
+    print("2 - в спальню")
+    where = int(input())
+    if where == 1:
+        inHall()
+    elif where == 2:
+        inBedroom()
+    else:
+        print("Такого направления нет!")
+        inBathroom()
+
+def mainMenu():
+     n = random.randint(1, 4)
+     if n == 1:
+         inBedroom()
+     elif n == 2:
+         inBathroom()
+     elif n == 3:
+         inKitchen()
+     else:
+         inHall()
+
+mainMenu()
