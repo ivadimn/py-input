@@ -30,8 +30,8 @@ def doWork(number1, number2):
     else:
         change_num2 = change_digits(number2, num_count)
         print("Изменённое второе число:", change_num2)
-
     print("Сумма чисел:", change_num1 + change_num2)
+
 first_n = int(input("Введите первое число: "))
 second_n = int(input("Введите второе число: "))
 doWork(first_n, second_n)
