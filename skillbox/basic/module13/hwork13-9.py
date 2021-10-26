@@ -1,7 +1,7 @@
 def calc_payment(summa, period, percent):
     i = percent / 100.0
-    k = (i * ((1 + i) ** period)) / round((((1 + i) ** period) - 1), 2)
-    return k * summa
+    k = (i * ((1 + i) ** period)) / (((1 + i) ** period) - 1)
+    return round(k * summa, 2)
 
 def summa_percent(ostatok, percent):
     return ostatok * percent / 100
