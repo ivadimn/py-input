@@ -53,7 +53,6 @@ while film != "end":
         print("Ошибка!!!")
     film = input("Введите фильм: ")
 print("Любимые фильмы: ", favorites)
-"""
 
 def get_count(l, ch):
     count = 0
@@ -68,3 +67,68 @@ for ch in ch_list:
     if get_count(ch_list, ch) == 1:
         uniq_count += 1
 print("Кол-во уникальных букв:", uniq_count)
+
+
+def get_weight():
+    weight = int(input("ведите вес контейнера (<=200): "))
+    while weight > 200:
+        print("Вес контейнера должен быть не более 200, попробуйте ещё: ", end = "")
+        weight = int(input())
+    return weight
+
+count_сcontainers = int(input("Кол-во контейнеров: "))
+containers_list = []
+for i in range(count_сcontainers):
+    containers_list.append(get_weight())
+
+new_container = int(input("Введите вес нового контейнера: "))
+insert_index = 0
+min_r = 200
+for i in range(len(containers_list)):
+    r = new_container - containers_list[i]
+    if r >= 0 and r <= min_r:
+        min_r = r
+        insert_index = i
+print(insert_index)
+
+
+def shift(l, k):
+    l_new = l.copy()
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = i + k
+        if i_new >= len_list:
+            i_new -= len_list
+        l_new[i_new] = l[i]
+    return l_new
+
+list_numbers = list(map(int, input("Введите числа через пробел: ").split(" ")))
+k = int(input("Сдвиг: "))
+print("Изначальный список:", list_numbers)
+print("Сдвинутый список список:", shift(list_numbers, k))
+
+
+def reverse(l):
+    l_r = l.copy()
+    len_list = len(l)
+    for i in range(len_list // 2):
+        l_r[i], l_r[len_list - i - 1] = l_r[len_list - i - 1], l_r[i]
+    return l_r
+
+word = list(input("Введите слово: "))
+if word == reverse(word):
+    print("Слово является палиндромом")
+else:
+    print("Слово не является палиндромом")
+"""
+
+l = [10,3, 8, 0, 27, 99 ,1 -10]
+for i in range(len(l)):
+    for j in range(i + 1, len(l)):
+        if l[j] < l[i]:
+            l[i], l[j] = l[j], l[i]
+print(l)
+
+
+
+
