@@ -96,7 +96,7 @@ for e in list_1:
         list_1.remove(e)
 
 print("Новый первый список с уникальными элементами:", list_1)
-"""
+
 
 list_skates = []
 list_man = []
@@ -116,3 +116,39 @@ for size in list_man:
         max_count_man += 1
         list_skates.remove(size)
 print("\nНаибольшее кол-во людей, которые могут взять ролики:", max_count_man)
+
+
+count_man = int(input("Кол-во человек: "))
+num = int(input("Какое число в считалке? "))
+print("Значит, выбывает каждый", num,  "человек")
+list_man = list(range(1, count_man + 1))
+begin = 1
+index = list_man.index(begin)
+while len(list_man) > 1:
+    l = len(list_man)
+    print("\nTекущий круг людей:", list_man)
+    print("Начало счёта с номера", list_man[index])
+    if num > l:
+        c = num // l
+        index += num - (l * c) - 1
+    elif num <= l:
+        index += num - 1
+        if index >= l:
+            index -= l
+    value = list_man[index]
+    list_man.remove(value)
+    print("Выбывает человек под номером", value)
+    if index >= len(list_man):
+        index = 0
+print("\nОстался человек под номером", list_man[0])
+"""
+
+count_friends = int(input("Кол-во друзей: "))
+iou_count = int(input("Долговых расписок: "))
+iou_list = []
+for i in range(iou_count):
+    print(i + 1, "расписка")
+    t = int(input("Кому: "))
+    f = int(input("От кого: "))
+    how_much = int(input("Сколько: "))
+    iou_list.append([t, f, how_much])
