@@ -141,14 +141,69 @@ while len(list_man) > 1:
     if index >= len(list_man):
         index = 0
 print("\nОстался человек под номером", list_man[0])
-"""
+
+
+
+def add_to_balance(iou, f_list):
+    for f in f_list:
+        if f[0] == iou[0]:
+            f[1] -= iou[2]
+        elif f[0] == iou[1]:
+            f[1] += iou[2]
+
+def print_balance(f_list):
+    print("\nБаланс друзей:")
+    for f in f_list:
+        print(f[0], ":", f[1])
 
 count_friends = int(input("Кол-во друзей: "))
 iou_count = int(input("Долговых расписок: "))
 iou_list = []
+friends_list = [[n, 0] for n in range(1, count_friends + 1)]
 for i in range(iou_count):
-    print(i + 1, "расписка")
+    print(i + 1, "\nрасписка")
     t = int(input("Кому: "))
     f = int(input("От кого: "))
     how_much = int(input("Сколько: "))
     iou_list.append([t, f, how_much])
+
+for iou in iou_list:
+    add_to_balance(iou, friends_list)
+
+print_balance(friends_list)
+"""
+def reverse(l):
+    l_r = l.copy()
+    len_list = len(l)
+    for i in range(len_list // 2):
+        l_r[i], l_r[len_list - i - 1] = l_r[len_list - i - 1], l_r[i]
+    return l_r
+
+
+def print_list(l, caption):
+    print(caption, end = " ")
+    for e in l:
+        print(e, end = " ")
+    print()
+
+
+count_num = int(input("Кол-во чисел: "))
+list_num = []
+list_add_num = []
+for i in range(count_num):
+    list_num.append(int(input("Число: ")))
+
+print_list(list_num, "Последовательность:")
+index = 0
+while list_num != reverse(list_num):
+    value = list_num[index]
+    list_num.insert(len(list_num) - index, value)
+    list_add_num.insert(0, value)
+    index += 1
+print("Нужно приписать чисел:", len(list_add_num))
+print_list(list_add_num, "Сами числа:")
+
+
+
+
+
