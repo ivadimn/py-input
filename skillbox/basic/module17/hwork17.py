@@ -68,8 +68,28 @@ for i in range(1, count_throws + 1):
     end = int(input("по номер "))
     list_sticks[begin - 1:end] = ["." for _ in range(end - begin + 1)]
 print("Результат:", "".join(list_sticks))
-"""
+
 
 nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]], [[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
-nice_list1 = [nice_list[i // 10][i // 6][i // 6]  for i in range(18)]
-print(nice_list1)
+flat = [num for l1 in nice_list for l2 in l1 for num in l2]
+print(flat)
+"""
+
+alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0123456789!?.,:;-"
+
+def encrypt(message, key):
+    encrypted_message = ""
+    for ch in message:
+        if ch in alphabet:
+            index = alphabet.find(ch)
+            new_index = index + key
+            if new_index >= len(alphabet):
+                new_index -= len(alphabet)
+            encrypted_message += alphabet[new_index]
+        else:
+            encrypted_message += ch
+    return encrypted_message
+
+message = input("Введите сообщение: ")
+shift = int(input("Введите сдвиг: "))
+print("Зашифрованное сообщение:", encrypt(message, shift))
