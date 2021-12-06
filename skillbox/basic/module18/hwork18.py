@@ -67,3 +67,28 @@ print("Закодированная строка:", encode(text))
 """
 
 
+def generate_alphabet():
+    ab = [chr(i_ch) for i_ch in range(33, 127)]
+    return "".join(ab)
+
+def hack(msg: str, alphabet: str, key: int):
+    hacked = []
+    for ch in msg:
+        if ch in alphabet:
+            index = alphabet.find(ch)
+            hacked_index = index - key
+            if hacked_index < 0:
+                hacked_index += len(alphabet)
+            hacked.append(alphabet[hacked_index])
+        else:
+            hacked.append(ch)
+    return "".join(hacked)
+
+message = 'vujgvmCfb tj ufscfu ouib z/vhm jdjuFyqm jt fscfuu uibo jdju/jnqm fTjnqm tj scfuuf ibou fy/dpnqm yDpnqmf jt cfuufs boui dbufe/dpnqmj uGmb tj fuufsc ouib oftufe/ bstfTq jt uufscf uibo otf/ef uzSfbebcjmj vout/dp djbmTqf dbtft (ubsfo djbmtqf hifopv up csfbl ifu t/svmf ipvhiBmu zqsbdujdbmju fbutc uz/qvsj Fsspst tipvme wfsof qbtt foumz/tjm omfttV mjdjumzfyq odfe/tjmf Jo fui dfgb pg hvjuz-bncj gvtfsf fui ubujpoufnq up ftt/hv Uifsf vmetip fc pof.. boe sbcmzqsfgf zpom pof pvt..pcwj xbz pu pe ju/ Bmuipvhi uibu bzx bzn puo cf wjpvtpc bu jstug ttvomf sfzpv( i/Evud xOp tj scfuuf ibou /ofwfs uipvhiBm fsofw jt fopgu cfuufs boui iu++sjh x/op gJ ifu nfoubujpojnqmf tj eibs pu mbjo-fyq tju( b bec /jefb Jg fui foubujpojnqmfn jt fbtz up bjo-fyqm ju znb cf b hppe jefb/ bnftqbdftO bsf pof ipoljoh sfbuh efbj .. fu(tm pe psfn gp tf"uip'
+alphabet =  generate_alphabet()
+print(alphabet)
+for key in range(1, len(alphabet) + 1):
+    print("Key = ", key, "nsg: ", hack(message, alphabet, key))
+
+
+
