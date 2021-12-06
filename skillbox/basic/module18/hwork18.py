@@ -64,12 +64,75 @@ def encode(text: str):
 
 text = input("Введите строку: ")
 print("Закодированная строка:", encode(text))
+
+def is_valid_oktet(oktet: str):
+    is_valid = False
+    if not oktet.isdigit():
+        print(oktet, "- не целое число")
+    else:
+        oktet_num = int(oktet)
+        if 0 <= oktet_num <= 255:
+            is_valid = True
+        else:
+            print(oktet_num, "превышает 255")
+    return is_valid
+
+
+def is_valid_ip(o_list: list):
+    is_valid = False
+    if len(o_list) != 4:
+        print("Адрес - это четыре числа, разделённые точками")
+    else:
+        for oktet in o_list:
+            is_valid = is_valid_oktet(oktet)
+    return is_valid
+
+
+oktet_list = input("Введите IP: ").split(".")
+if is_valid_ip(oktet_list):
+    print("IP-адрес корректен")
 """
+def shift(l, k):
+    l_new = list(l)
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = (i + k) % len_list
+        l_new[i_new] = l[i]
+    return "".join(l_new)
 
 
+def get_shift(s1: str, s2: str):
+    sh = -1
+    if s1 != s2:
+        for h in range(1, len(s1)):
+            s2_shift = shift(s2, 1)
+            if s2_shift == s1:
+                sh = h
+                break
+            s2 = s2_shift
+    else:
+        sh = 0
+    return sh
+
+line1 = input("Первая строка: ")
+line2 = input("Вторая строка: ")
+
+sh = get_shift(line1, line2)
+if sh > 0:
+    print("Первая строка получается из второй со сдвигом", sh)
+
+"""
 def generate_alphabet():
     ab = [chr(i_ch) for i_ch in range(33, 127)]
     return "".join(ab)
+
+def shift(l, k):
+    l_new = l.copy()
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = (i + k) % len_list
+        l_new[i_new] = l[i]
+    return l_new
 
 def hack(msg: str, alphabet: str, key: int):
     hacked = []
@@ -87,8 +150,18 @@ def hack(msg: str, alphabet: str, key: int):
 message = 'vujgvmCfb tj ufscfu ouib z/vhm jdjuFyqm jt fscfuu uibo jdju/jnqm fTjnqm tj scfuuf ibou fy/dpnqm yDpnqmf jt cfuufs boui dbufe/dpnqmj uGmb tj fuufsc ouib oftufe/ bstfTq jt uufscf uibo otf/ef uzSfbebcjmj vout/dp djbmTqf dbtft (ubsfo djbmtqf hifopv up csfbl ifu t/svmf ipvhiBmu zqsbdujdbmju fbutc uz/qvsj Fsspst tipvme wfsof qbtt foumz/tjm omfttV mjdjumzfyq odfe/tjmf Jo fui dfgb pg hvjuz-bncj gvtfsf fui ubujpoufnq up ftt/hv Uifsf vmetip fc pof.. boe sbcmzqsfgf zpom pof pvt..pcwj xbz pu pe ju/ Bmuipvhi uibu bzx bzn puo cf wjpvtpc bu jstug ttvomf sfzpv( i/Evud xOp tj scfuuf ibou /ofwfs uipvhiBm fsofw jt fopgu cfuufs boui iu++sjh x/op gJ ifu nfoubujpojnqmf tj eibs pu mbjo-fyq tju( b bec /jefb Jg fui foubujpojnqmfn jt fbtz up bjo-fyqm ju znb cf b hppe jefb/ bnftqbdftO bsf pof ipoljoh sfbuh efbj .. fu(tm pe psfn gp tf"uip'
 alphabet =  generate_alphabet()
 print(alphabet)
-for key in range(1, len(alphabet) + 1):
-    print("Key = ", key, "nsg: ", hack(message, alphabet, key))
-
-
-
+words = hack(message, alphabet, 1).split()
+print("msg: ", words)
+sh = 3
+list_sentences = []
+sent = []
+for word in words:
+    print(word)
+    word = shift(list(word), sh)
+    sent.append("".join(word))
+    if "." in word or "!" in word:
+        list_sentences.append(sent)
+        sent = []
+        sh += 1
+print(list_sentences)
+"""
