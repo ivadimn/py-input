@@ -91,7 +91,7 @@ def is_valid_ip(o_list: list):
 oktet_list = input("Введите IP: ").split(".")
 if is_valid_ip(oktet_list):
     print("IP-адрес корректен")
-"""
+
 def shift(l, k):
     l_new = list(l)
     len_list = len(l)
@@ -120,6 +120,42 @@ line2 = input("Вторая строка: ")
 sh = get_shift(line1, line2)
 if sh > 0:
     print("Первая строка получается из второй со сдвигом", sh)
+"""
+
+def process_bad_word(word: str):
+    new_word = []
+    part_word = []
+    for ch in word:
+        if ch.isalnum():
+            part_word.append(ch)
+        else:
+            part_word.reverse()
+            new_word.append("".join(part_word))
+            part_word.clear()
+            new_word.append(ch)
+    if len(part_word) > 0:
+        part_word.reverse()
+        new_word.append("".join(part_word))
+
+    return "".join(new_word)
+
+
+def generate_new_message(message: list):
+    new_message = []
+    for word in message:
+        if word.isalnum():
+            l = list(word)
+            l.reverse()
+            new_message.append("".join(l))
+        else:
+            new_message.append(process_bad_word(word))
+    return " ".join(new_message)
+
+message = input("Сообщение: ").split()
+print("Новое сообщение:", generate_new_message(message))
+
+
+
 
 """
 def generate_alphabet():
