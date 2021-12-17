@@ -269,24 +269,23 @@ for i in range(count_people - 1):
 print_dict(genealog_tree)
 """
 
-def can_palindrom(line : str)
-    can = True
-    if len(line) % 2 == 0:
-        for ch in line:
-            if line.count(ch) % 2 != 0:
-                can = False
-                break
+def is_can_palindrom(ft : dict, lw : int):
+    can = False
+    evens = [1 if v % 2 == 0 else 0 for v in ft.values()]
+    if lw % 2 == 0:
+        can = sum(evens) == len(ft)
     else:
-        single_ch = False
-        for ch in line:
-            if line.count(ch) % 2 != 0 and single_ch:
-                can = False
-                break
-            elif line.count(ch) == 1 and not single_ch:
-                single_ch = True
+        can = sum(evens) == (len(ft) - 1)
+    return can
 
 
 line = input("Введите строку: ")
+freq_table = {ch : line.count(ch) for ch in sorted(set(line))}
+is_palindrom = is_can_palindrom(freq_table, len(line))
+if is_palindrom:
+    print("Можно сделать палиндромом")
+else:
+    print("Нельзя сделать палиндромом")
 
 
 
