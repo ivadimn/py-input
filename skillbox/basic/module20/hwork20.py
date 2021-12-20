@@ -174,7 +174,23 @@ protokol = {
     "M" : (95715, 8),
 }
 
-nums = [1, 2, 3]
 
-un = list(zip(protokol, nums))
-print(un)
+def zip_1(*args):
+    min_len = len(sorted(args, key=len)[0])
+    for l in range(min_len):
+        yield tuple(list(arg.keys())[l] if isinstance(arg, dict) else arg[l] for arg in args)
+        #print(tuple(list(arg.keys())[l] if isinstance(arg, dict) else arg[l] for arg in args))
+
+
+
+
+
+nums1 = [1, 2, 3, 90]
+nums2 = (0, 2, 3, 8, 10)
+line = "any line"
+zip_gen = zip_1(nums1, protokol, nums2, line)
+print(zip_gen)
+print(list(zip_gen))
+
+
+
