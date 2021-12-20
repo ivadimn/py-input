@@ -144,7 +144,7 @@ while True:
     else:
         print("Не правильная команда!")
         break
-"""
+
 
 protokol = {
     "Jack" : (69485, 0),
@@ -153,14 +153,28 @@ protokol = {
     "Alex" : (95715, 3),
     "M" : (95715, 8),
 }
-#numr = int(input("Сколько записей вносится в протокол? "))
-#for i in range(numr):
-#    record = input("{0} запись: ".format(i + 1)).split()
-#    if record[1] in protokol:
-#        if protokol[record[1]][0] < int(record[0]):
-#            protokol[record[1]] = (int(record[0]), i)
-#    else:
-#        protokol[record[1]] = (int(record[0]), i)
+numr = int(input("Сколько записей вносится в протокол? "))
+for i in range(numr):
+    record = input("{0} запись: ".format(i + 1)).split()
+    if record[1] in protokol:
+        if protokol[record[1]][0] < int(record[0]):
+            protokol[record[1]] = (int(record[0]), i)
+    else:
+        protokol[record[1]] = (int(record[0]), i)
 
-print(sorted(protokol, key=lambda name:  protokol[name][0] + (9 - protokol[name][1]), reverse=True))
+sorted_keys = sorted(protokol, key=lambda name:  protokol[name][0] + (9 - protokol[name][1]), reverse=True)
+for i, name in enumerate(sorted_keys[:3]):
+    print("{0} место, {1} ({2})".format(i + 1, name, protokol[name][0]))
+"""
 
+protokol = {
+    "qwerty" : (197128, 4),
+    "Jack" : (95715, 5),
+    "Alex" : (95715, 3),
+    "M" : (95715, 8),
+}
+
+nums = [1, 2, 3]
+
+un = list(zip(protokol, nums))
+print(un)
