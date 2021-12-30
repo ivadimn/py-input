@@ -1,0 +1,2169 @@
+Скрипты из папки /home/vadim/Python_Basic 
+
+Скрипты из папки /home/vadim/Python_Basic/Module16 
+
+Скрипты из папки /home/vadim/Python_Basic/Module16/06_unique_elems 
+
+list_1 = list(map(int, input("Введите 3 числа через пробел: ").split(" ")))
+list_2 = list(map(int, input("Введите 7 чисел через пробел: ").split(" ")))
+
+print("Первый список:", list_1)
+print("Второй список:", list_2)
+list_1.extend(list_2)
+
+for e in list_1:
+    for _ in range(list_1.count(e) - 1):
+        list_1.remove(e)
+
+print("\nНовый первый список с уникальными элементами:", list_1)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/02_line 
+
+puple_list1 = list(range(160, 177, 2))
+puple_list2 = list(range(162, 181, 3))
+
+puple_list1.extend(puple_list2)
+puple_list1.sort()
+print("Список:", puple_list1)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/05_songs 
+
+violator_songs = [
+    ['World in My Eyes', 4.86],
+    ['Sweetest Perfection', 4.43],
+    ['Personal Jesus', 4.56],
+    ['Halo', 4.9],
+    ['Waiting for the Night', 6.07],
+    ['Enjoy the Silence', 4.20],
+    ['Policy of Truth', 4.76],
+    ['Blue Dress', 4.29],
+    ['Clean', 5.83]
+]
+
+
+def get_song_duration(song, l_songs):
+    duration = 0
+    for s in l_songs:
+        if song in s :
+            duration = s[1]
+    return duration
+
+
+count_songs = int(input("Сколько песен выбрать? "))
+common_time = 0
+for i in range(count_songs):
+    print("Название", i + 1, "песни: ", end = "")
+    song = input()
+    common_time += get_song_duration(song, violator_songs)
+print("Общее время звучания песен:", round(common_time, 2), "минут")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/07_roller_skates 
+
+list_skates = []
+list_man = []
+count_skates = int(input("Кол-во коньков: "))
+for i in range(count_skates):
+    print("Размер", i + 1, "пары: ", end = "")
+    list_skates.append(int(input()))
+
+count_man = int(input("\nКол-во людей: "))
+for i in range(count_man):
+    print("Размер ноги", i + 1, "человека: ", end = "")
+    list_man.append(int(input()))
+
+max_count_man = 0
+for size in list_man:
+    if size in list_skates:
+        max_count_man += 1
+        list_skates.remove(size)
+
+print("\nНаибольшее кол-во людей, которые могут взять ролики:", max_count_man)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/03_details 
+
+shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300],
+        ['педаль', 100], ['седло', 1500], ['рама', 12000],
+        ['обод', 2000], ['шатун', 200], ['седло', 2700]]
+
+
+name = input("Название детали: ")
+prices = [d[1] for d in shop if name in d]
+print("Кол-во деталей -", len(prices))
+print("Общая стоимость -", sum(prices))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/09_friends 
+
+def add_to_balance(iou, f_list):
+    for f in f_list:
+        if f[0] == iou[0]:
+            f[1] -= iou[2]
+        elif f[0] == iou[1]:
+            f[1] += iou[2]
+
+
+def print_balance(f_list):
+    print("\nБаланс друзей:")
+    for f in f_list:
+        print(f[0], ":", f[1])
+
+
+count_friends = int(input("Кол-во друзей: "))
+iou_count = int(input("Долговых расписок: "))
+iou_list = []
+friends_list = [[n, 0] for n in range(1, count_friends + 1)]
+for i in range(iou_count):
+    print()
+    print(i + 1, "расписка")
+    t = int(input("Кому: "))
+    f = int(input("От кого: "))
+    how_much = int(input("Сколько: "))
+    iou_list.append([t, f, how_much])
+
+for iou in iou_list:
+    add_to_balance(iou, friends_list)
+
+print_balance(friends_list)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/10_simmetrical_seq 
+
+def reverse(l):
+    l_r = l.copy()
+    len_list = len(l)
+    for i in range(len_list // 2):
+        l_r[i], l_r[len_list - i - 1] = l_r[len_list - i - 1], l_r[i]
+    return l_r
+
+
+def print_list(l, caption):
+    print(caption, end = " ")
+    for e in l:
+        print(e, end = " ")
+    print()
+
+
+count_num = int(input("Кол-во чисел: "))
+list_num = []
+list_add_num = []
+for i in range(count_num):
+    list_num.append(int(input("Число: ")))
+
+print_list(list_num, "Последовательность:")
+index = 0
+while list_num != reverse(list_num):
+    value = list_num[index]
+    list_num.insert(len(list_num) - index, value)
+    list_add_num.insert(0, value)
+    index += 1
+
+print("Нужно приписать чисел:", len(list_add_num))
+print_list(list_add_num, "Сами числа:")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/08_rhyme_cnt 
+
+count_man = int(input("Кол-во человек: "))
+num = int(input("Какое число в считалке? "))
+print("Значит, выбывает каждый", num,  "человек")
+list_man = list(range(1, count_man + 1))
+begin = 1
+index = list_man.index(begin)
+while len(list_man) > 1:
+    l = len(list_man)
+    print("\nTекущий круг людей:", list_man)
+    print("Начало счёта с номера", list_man[index])
+    if num > l:
+        c = num // l
+        index += num - (l * c) - 1
+    elif num <= l:
+        index += num - 1
+        if index >= l:
+            index -= l
+    value = list_man[index]
+    list_man.remove(value)
+    print("Выбывает человек под номером", value)
+    if index >= len(list_man):
+        index = 0
+
+print("\nОстался человек под номером", list_man[0])
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/01_scary_code 
+
+a = [1, 5, 3]
+b = [1, 5, 1, 5]
+c = [1, 3, 1, 5, 3, 3]
+"""
+for i in b:
+    a.append(i)
+t = 0
+for i in a:
+    if i == 5:
+        t += 1
+print(t)
+d = []
+for i in a:
+    if i != 5:
+        d.append(i)
+for i in c:
+    d.append(i)
+t = 0
+for i in d:
+    if i == 3:
+        t += 1
+print(t)
+print(d)
+"""
+
+
+def remove_elems(l : list, e):
+    while e in l:
+        l.remove(e)
+    return l
+
+a.extend(b)
+print("Кол-во цифр 5 при первом объединении:", a.count(5))
+a = remove_elems(a, 5)
+a.extend(c)
+print("Кол-во цифр 3 при втором объединении:", a.count(3))
+print("Итоговый список:", a)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module16/04_party 
+
+guests = ['Петя', 'Ваня', 'Саша', 'Лиза', 'Катя']
+
+command = ""
+while True:
+    print("Сейчас на вечеринке",  len(guests),  "человек:", guests)
+    command = input("Гость пришёл или ушёл? ")
+    if command == "Пора спать":
+        print("Вечеринка закончилась, все легли спать.")
+        break
+    name = input("Имя гостя: ")
+    if command == "пришёл":
+        if len(guests) == 6:
+            print("Прости,", name, ", но мест нет.")
+        else:
+            print("Привет,", name, "!")
+            guests.append(name)
+
+    elif command == "ушёл" and name in guests:
+        guests.remove(name)
+        print("Пока,", name, "!")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19 
+
+Скрипты из папки /home/vadim/Python_Basic/Module19/01_songs_2 
+
+violator_songs = {
+    'World in My Eyes': 4.86,
+    'Sweetest Perfection': 4.43,
+    'Personal Jesus': 4.56,
+    'Halo': 4.9,
+    'Waiting for the Night': 6.07,
+    'Enjoy the Silence': 4.20,
+    'Policy of Truth': 4.76,
+    'Blue Dress': 4.29,
+    'Clean': 5.83
+}
+
+count_songs = int(input("Сколько песен выбрать? "))
+total_duration = 0
+for i in range(1, count_songs + 1):
+    song = input("Название {0} песни: ".format(i))
+    total_duration += violator_songs.get(song, 0)
+
+print("Общее время звучания песен {0:.2f} минут".format(total_duration))
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/07_pizza 
+
+def print_dict(d : dict):
+    for k, v in d.items():
+        print("{0}:".format(k))
+        for kp, count in d.get(k).items():
+            print("\t{0}: {1}".format(kp, count))
+
+
+count = int(input("Введите кол-во заказов: "))
+orders = dict()
+for i in range(1, count + 1):
+    pizza = input("{0} заказ: ".format(i)).split()
+    if pizza[0] in orders:
+        if pizza[1] in orders[pizza[0]]:
+            count = orders[pizza[0]][pizza[1]]
+            orders[pizza[0]][pizza[1]] = count + int(pizza[2])
+        else:
+            orders[pizza[0]][pizza[1]] = int(pizza[2])
+    else:
+        orders[pizza[0]] = {pizza[1]: int(pizza[2])}
+
+print_dict(orders)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/06_synonym_dict 
+
+def get_synonym(d: dict, w: str):
+    for k, v in d.items():
+        if w.lower() == k.lower():
+            return v
+        elif w.lower() == v.lower():
+            return k
+    return ""
+
+count = int(input("Введите количество пар слов: "))
+synonym_dict = dict()
+for i in range(1, count + 1):
+    pair = input("{0} пара: ".format(i)).split("-")
+    synonym_dict[pair[0]] = pair[1]
+
+while True:
+    word = input("Введите слово: ")
+    synonym = get_synonym(synonym_dict, word)
+    if synonym == "":
+        print("Такого слова в словаре нет.")
+    else:
+        print("Синоним: {0}".format(synonym))
+        break
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/04_goods 
+
+goods = {
+    'Лампа': '12345',
+    'Стол': '23456',
+    'Диван': '34567',
+    'Стул': '45678',
+}
+
+store = {
+    '12345': [
+        {'quantity': 27, 'price': 42},
+    ],
+    '23456': [
+        {'quantity': 22, 'price': 510},
+        {'quantity': 32, 'price': 520},
+    ],
+    '34567': [
+        {'quantity': 2, 'price': 1200},
+        {'quantity': 1, 'price': 1150},
+    ],
+    '45678': [
+        {'quantity': 50, 'price': 100},
+        {'quantity': 12, 'price': 95},
+        {'quantity': 43, 'price': 97},
+    ],
+}
+for name, code in goods.items():
+    summ = 0
+    total_count = 0
+    for good in  store.get(code, []):
+        count = good.get("quantity", 0)
+        summ += good.get("price", 0) * count
+        total_count += count
+    print("{0} - {1} шт, стоимость {2} руб".format(name, total_count, summ))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/05_frequency_hist_2 
+
+def print_dict(d : dict):
+    for k, v in d.items():
+        print("{0} : {1}".format(k, v))
+
+
+def invers_dict(d: dict):
+    return { key : [k for k, v in d.items() if v == key]  for key in set(d.values())}
+
+
+text = input("Введите текст: ")
+frequency_dict = {ch : text.count(ch) for ch in sorted(set(text))}
+print("Оригинальный словарь частот:")
+print_dict(frequency_dict)
+print("Инвертированный словарь частот:")
+print_dict(invers_dict(frequency_dict))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/09_pedigree 
+
+def print_dict(d: dict):
+    for k in sorted(d):
+        print("{0} {1}".format(k, d[k]))
+
+
+count_people = int(input("Введите количество человек: "))
+genealog_tree = dict()
+p_num = 0
+while p_num < count_people - 1:
+    pair = input("{0} пара: ".format(p_num + 1)).split()
+    if len(genealog_tree) == 0:
+        genealog_tree[pair[1]] =  0
+        genealog_tree[pair[0]] = 1
+        p_num += 1
+    else:
+        if pair[1] not in genealog_tree:
+            print("Нет родителя с именем {0}".format(pair[1]))
+        else:
+            height = genealog_tree.get(pair[1])
+            genealog_tree[pair[0]] = height + 1
+            p_num += 1
+
+print_dict(genealog_tree)
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/10_palindrome_again 
+
+def is_can_palindrom(ft : dict, lw : int):
+    can = False
+    evens = [1 if v % 2 == 0 else 0 for v in ft.values()]
+    if lw % 2 == 0:
+        can = sum(evens) == len(ft)
+    else:
+        can = sum(evens) == (len(ft) - 1)
+    return can
+
+
+line = input("Введите строку: ")
+freq_table = {ch : line.count(ch) for ch in sorted(set(line))}
+is_palindrom = is_can_palindrom(freq_table, len(line))
+if is_palindrom:
+    print("Можно сделать палиндромом")
+else:
+    print("Нельзя сделать палиндромом")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/02_geography 
+
+count_countries = int(input("Кол-во стран: "))
+countries = dict()
+for i in range(1, count_countries + 1):
+    country = input("{0} страна: ".format(i)).split()
+    countries.update({city : country[0] for city in country[1:]})
+
+for i in range(1, 4):
+    city = input("{} город: ".format(i))
+    print("Город {0} расположен в стране {1}.".format(city, countries.get(city, "")))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/03_cryptocurrency 
+
+data = {
+    "address": "0x544444444444",
+    "ETH": {
+        "balance": 444,
+        "total_in": 444,
+        "total_out": 4
+    },
+    "count_txs": 2,
+    "tokens": [
+        {
+            "fst_token_info": {
+                "address": "0x44444",
+                "name": "fdf",
+                "decimals": 0,
+                "symbol": "dsfdsf",
+                "total_supply": "3228562189",
+                "owner": "0x44444",
+                "last_updated": 1519022607901,
+                "issuances_count": 0,
+                "holders_count": 137528,
+                "price": False
+            },
+            "balance": 5000,
+            "totalIn": 0,
+            "total_out": 0
+        },
+        {
+            "sec_token_info": {
+                "address": "0x44444",
+                "name": "ggg",
+                "decimals": "2",
+                "symbol": "fff",
+                "total_supply": "250000000000",
+                "owner": "0x44444",
+                "last_updated": 1520452201,
+                "issuances_count": 0,
+                "holders_count": 20707,
+                "price": False
+            },
+            "balance": 500,
+            "totalIn": 0,
+            "total_out": 0
+        }
+    ]
+}
+
+
+def print_dict(d, count_tab):
+    print()
+    for k, v in d.items():
+        print("\t" * count_tab, end = "")
+        print("Ключ-{0}: значение-{1}".format(k, v))
+        if isinstance(v, dict):
+            print_dict(v, count_tab + 1)
+        elif isinstance(v, list):
+            print_list(v, count_tab + 1)
+
+
+def print_list(l, count_tab):
+    print()
+    for li in l:
+        print("\t" * count_tab, li)
+        if isinstance(li, dict):
+            print_dict(li, count_tab + 1)
+        elif isinstance(li, list):
+            print_list(li, count_tab + 1)
+
+
+
+# Вывести списки ключей и значений словаря.
+print("Cписки ключей и значений словаря:")
+print_dict(data, 0)
+
+# В “ETH” добавить ключ “total_diff” со значением 100.
+data["ETH"]["total_diff"] = 100
+print("\n", data["ETH"])
+
+# Внутри “fst_token_info” значение ключа “name” поменять с “fdf” на “doge”.
+data["tokens"][0]["fst_token_info"]["name"] = "doge"
+print("\n", data["tokens"][0]["fst_token_info"])
+
+#Удалить “total_out” из tokens и присвоить его значение в “total_out” внутри “ETH”.
+print()
+total_out = 0
+for token in data.get("tokens", []):
+    total_out = token.pop("total_out", 0)
+    print(token)
+data["ETH"]["totalOut"] = total_out
+
+#Внутри "sec_token_info" изменить название ключа “price” на “total_price”
+print()
+sec_token_info = data["tokens"][1].get("sec_token_info")
+price = sec_token_info.pop("price", False)
+sec_token_info.update({"total_price": price})
+print(sec_token_info)
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module19/08_guess_number 
+
+max_num = int(input("Введите максимальное число: "))
+probable_nums = set()
+while True:
+    nums = input("Нужное число есть среди вот этих чисел: ")
+    if nums.lower() == "помогите":
+        print("Артём мог загадать следующие числа: {0} ", " ".join(map(str, probable_nums)))
+        break
+    nums_set = {n for n in set(map(int, nums.split())) if n <= max_num}
+    answer = input("Ответ Артёма: ")
+    if answer.lower() == "да":
+        if len(nums_set) == 1:
+            print("Вы угадали!")
+            break
+        probable_nums = probable_nums.union(nums_set)
+    elif answer.lower() == "нет":
+        probable_nums = probable_nums - probable_nums.intersection(nums_set)
+    if len(probable_nums) == 1:
+        print("Артём загадал число: {0}".format(list(probable_nums)[0]))
+        break
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14 
+
+Скрипты из папки /home/vadim/Python_Basic/Module14/02_session 
+
+print("Введите первую точку")
+x1 = float(input('X: '))
+y1 = float(input('Y: '))
+print("\nВведите вторую точку")
+x2 = float(input('X: '))
+y2 = float(input('Y: '))
+
+x_diff = x1 - x2
+y_diff = y1 - y2
+print("Уравнение прямой, проходящей через эти точки:")
+if x_diff == 0:
+	print("x =", x1)
+elif y_diff == 0:
+	print("y =", y1)
+else:
+	k = y_diff / x_diff
+	b = y2 - k * x2
+	print("y = ", k, " * x + ", b)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/05_least_divisor 
+
+def lcd(number):
+    divider = 2
+    while number % divider != 0:
+        divider += 1
+    return divider
+
+number = int(input("Введите число: "))
+print("Наименьший делитель, отличный от единицы:", lcd(number))
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/03_sum_and_dif 
+
+def summa_digit(number):
+    summ = 0
+    while number > 0:
+        summ += number % 10
+        number //= 10
+    return summ
+
+def count_digit(number):
+    count = 0
+    while number > 0:
+        count += 1
+        number //= 10
+    return count
+
+number = int(input("Введите число: "))
+summ = summa_digit(number)
+print("Сумма цифр:", summ)
+count = count_digit(number)
+print("Кол-во цифр в числе:", count)
+print("Разность суммы и кол-ва цифр:", summ - count)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/06_coin2 
+
+import math
+
+def get_pos(x, y):
+    return math.sqrt((x ** 2) + (y **2))
+
+print("Введите координаты монетки:")
+x = float(input("X: "))
+y = float(input("Y: "))
+r = float(input("Введите радиус: "))
+if get_pos(x, y) <= r:
+    print("Монетка где-то рядом")
+else:
+    print("Монетки в области нет")
+
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/07_years 
+
+def is_three_digit(year):
+    f_d = year % 10
+    c_f_d = 1
+    year //= 10
+    s_d = year % 10
+    c_s_d = 1
+    year //= 10
+    if f_d == s_d:
+        c_f_d = c_s_d = 2
+    while year > 0:
+        d = year % 10
+        if d == f_d:
+            c_f_d += 1
+        elif d == s_d:
+            c_s_d += 1
+        year //= 10
+    return (c_f_d == 3) or (c_s_d == 3)
+
+
+year_start = int(input("Введите первый год: "))
+year_finish = int(input("ведите второй год: "))
+print("Года от 1900 до 2100 с тремя одинаковыми цифрами:")
+for y in range(year_start, year_finish + 1):
+    if is_three_digit(y):
+        print(y)
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/04_reverse_num 
+
+import math
+
+def count_digit(number):
+    count = 0
+    while number > 0:
+        number //= 10
+        count += 1
+    return count
+
+def invers(number):
+    n = 0
+    while number > 0:
+        d = number % 10
+        number //= 10
+        n *= 10
+        n += d
+    return n
+
+def get_exp(number):
+    exp = 0
+    while number - int(number) != 0:
+        number *= 10
+        exp += 1
+    return exp, number
+
+def revers_number(number):
+    num_int_inv = invers(int(number))
+    exp, number = get_exp(number)
+    num_fract_inv = invers(int(number)) // 10 ** (count_digit(int(number)) - exp)
+    return num_int_inv + num_fract_inv / (10 ** exp)
+
+num1 = float(input("Введите первое число: "))
+num2 = float(input("Введите второе число: "))
+num1_inv = revers_number(num1)
+num2_inv = revers_number(num2)
+print("Первое число наоборот:", num1_inv)
+print("Второе число наоборот:", num2_inv)
+print("Сумма:", num1_inv + num2_inv)
+
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module14/01_os_info 
+
+
+import platform
+import sys
+
+info = 'OS info is \n{}\n\nPython version is {} {}'.format(
+    platform.uname(),
+    sys.version,
+    platform.architecture(),
+)
+print(info)
+
+with open('os_info.txt', 'w', encoding='utf8') as file:
+    file.write(info)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18 
+
+Скрипты из папки /home/vadim/Python_Basic/Module18/01_restaurant_menu 
+
+menu = input("Доступное меню: ").split(";")
+print("На данный момент в меню есть:", ", ".join(menu))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/07_ip_adress_2 
+
+def is_valid_oktet(oktet: str):
+    is_valid = False
+    if not oktet.isdigit():
+        print(oktet, "- не целое число")
+    else:
+        oktet_num = int(oktet)
+        if 0 <= oktet_num <= 255:
+            is_valid = True
+        else:
+            print(oktet_num, "превышает 255")
+    return is_valid
+
+
+def is_valid_ip(o_list: list):
+    is_valid = False
+    if len(o_list) != 4:
+        print("Адрес - это четыре числа, разделённые точками")
+    else:
+        for oktet in o_list:
+            is_valid = is_valid_oktet(oktet)
+    return is_valid
+
+
+oktet_list = input("Введите IP: ").split(".")
+if is_valid_ip(oktet_list):
+    print("IP-адрес корректен")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/02_longest_word 
+
+words = input("Введите слова через пробел: ").split()
+max_len_word = words[0]
+max_len = len(words[0])
+for word in words:
+    if len(word) > max_len:
+        max_len = len(word)
+        max_len_word = word
+print("Самое длинное слово:", max_len_word, "его длина =", max_len)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/03_files 
+
+spec_ch = tuple("@№$%^&*()")
+file_name = input("Название файла: ")
+if file_name.startswith(spec_ch):
+    print("Ошибка: название начинается на один из специальных символов")
+elif not file_name.endswith((".txt", ".docs")):
+    print("Ошибка: неверное расширение файла. Ожидалось .txt или .docx")
+else:
+    print("Файл назван верно.")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/06_compression 
+
+def encode(text: str):
+    index = 0
+    encode = []
+    while index < len(text):
+        ch = text[index]
+        count = 1
+        index += 1
+        while index < len(text) and text[index] == ch:
+            count += 1
+            index += 1
+        encode.append(ch)
+        encode.append(str(count))
+    return "".join(encode)
+
+text = input("Введите строку: ")
+print("Закодированная строка:", encode(text))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/10_the_truth 
+
+def generate_alphabet():
+    ab = [chr(i_ch) for i_ch in range(33, 127)]
+    return "".join(ab)
+
+def shift(l, k):
+    l_new = l.copy()
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = (i + k) % len_list
+        l_new[i_new] = l[i]
+    return l_new
+
+
+def shift_words(words: list, start_shift: int):
+    list_sentences = []
+    sent = []
+    for word in words:
+        word = shift(list(word), start_shift)
+        sent.append("".join(word))
+        if "." in word or "!" in word:
+            list_sentences.append(" ".join(sent))
+            sent = []
+            start_shift += 1
+    return list_sentences
+
+def hack(msg: str, alphabet: str, key: int):
+    hacked = []
+    for ch in msg:
+        if ch in alphabet:
+            index = alphabet.find(ch)
+            hacked_index = index - key
+            if hacked_index < 0:
+                hacked_index += len(alphabet)
+            hacked.append(alphabet[hacked_index])
+        else:
+            hacked.append(ch)
+    return "".join(hacked)
+
+
+message = 'vujgvmCfb tj ufscfu ouib z/vhm jdjuFyqm jt fscfuu uibo jdju/jnqm fTjnqm tj scfuuf ibou fy/dpnqm yDpnqmf jt cfuufs boui dbufe/dpnqmj uGmb tj fuufsc ouib oftufe/ bstfTq jt uufscf uibo otf/ef uzSfbebcjmj vout/dp djbmTqf dbtft (ubsfo djbmtqf hifopv up csfbl ifu t/svmf ipvhiBmu zqsbdujdbmju fbutc uz/qvsj Fsspst tipvme wfsof qbtt foumz/tjm omfttV mjdjumzfyq odfe/tjmf Jo fui dfgb pg hvjuz-bncj gvtfsf fui ubujpoufnq up ftt/hv Uifsf vmetip fc pof.. boe sbcmzqsfgf zpom pof pvt..pcwj xbz pu pe ju/ Bmuipvhi uibu bzx bzn puo cf wjpvtpc bu jstug ttvomf sfzpv( i/Evud xOp tj scfuuf ibou /ofwfs uipvhiBm fsofw jt fopgu cfuufs boui iu++sjh x/op gJ ifu nfoubujpojnqmf tj eibs pu mbjo-fyq tju( b bec /jefb Jg fui foubujpojnqmfn jt fbtz up bjo-fyqm ju znb cf b hppe jefb/ bnftqbdftO bsf pof ipoljoh sfbuh efbj .. fu(tm pe psfn gp tf"uip'
+alphabet =  generate_alphabet()
+#расшифровываем шифр Цезаря с ключем 1
+words = hack(message, alphabet, 1).split()
+# Первое предложение сдвигается 3
+# все последующие предложения сдвигаютя на 1 больше каждое следующее предложение
+list_sentences = shift_words(words, 3)
+for sent in list_sentences:
+    print(sent)
+
+print("\nЭтот текст в интернете:", "https://www.python.org/dev/peps/pep-0020/")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/05_password 
+
+def is_pwd_secure(pwd: str):
+    is_cap_ch = False
+    count_digits = 0
+    for ch in pwd:
+        if ch.isalpha() and ch.isupper():
+            is_cap_ch = True
+        elif ch.isdigit():
+            count_digits += 1
+    return is_cap_ch and count_digits >= 3
+
+
+password = input("Придумайте пароль: ")
+while not is_pwd_secure(password):
+    print("Пароль ненадёжный. Попробуйте ещё раз.")
+    password = input("Придумайте пароль: ")
+print("Это надёжный пароль!")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/09_message 
+
+def process_bad_word(word: str):
+    new_word = []
+    part_word = []
+    for ch in word:
+        if ch.isalnum():
+            part_word.append(ch)
+        else:
+            part_word.reverse()
+            new_word.append("".join(part_word))
+            part_word.clear()
+            new_word.append(ch)
+    if len(part_word) > 0:
+        part_word.reverse()
+        new_word.append("".join(part_word))
+
+    return "".join(new_word)
+
+
+def generate_new_message(message: list):
+    new_message = []
+    for word in message:
+        if word.isalnum():
+            l = list(word)
+            l.reverse()
+            new_message.append("".join(l))
+        else:
+            new_message.append(process_bad_word(word))
+    return " ".join(new_message)
+
+message = input("Сообщение: ").split()
+print("Новое сообщение:", generate_new_message(message))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/08_ticker 
+
+def shift(l, k):
+    l_new = list(l)
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = (i + k) % len_list
+        l_new[i_new] = l[i]
+    return "".join(l_new)
+
+
+def get_shift(s1: str, s2: str):
+    sh = -1
+    if s1 != s2:
+        for h in range(1, len(s1)):
+            s2_shift = shift(s2, 1)
+            if s2_shift == s1:
+                sh = h
+                break
+            s2 = s2_shift
+    else:
+        sh = 0
+    return sh
+
+line1 = input("Первая строка: ")
+line2 = input("Вторая строка: ")
+
+sh = get_shift(line1, line2)
+if sh > 0:
+    print("Первая строка получается из второй со сдвигом", sh)
+elif sh == 0:
+    print("Строки одинаковые")
+else:
+    print("Первую строку нельзя получить из второй с помощью циклического сдвига.")
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module18/04_capital_letters 
+
+words = input("Введите строку: ").split()
+words_cap = [word.capitalize()  for word in words]
+print("Результат:", " ".join(words_cap))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17 
+
+Скрипты из папки /home/vadim/Python_Basic/Module17/05_reversal 
+
+line = input("Введите строку как минимум с думя буквами <h>: ")
+index1 = line.lower().index("h")
+index2 = line.lower().index("h", index1 + 1)
+sub_line = line[index1+1: index2]
+print("Перевёрнутая строка между двумя <h>:", sub_line[::-1])
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/01_vowels 
+
+vowels = "аеёиоуыэюя"
+text = input("Введите текст: ")
+
+list_vowels = [ch for ch in text if ch.lower() in vowels]
+print("Список гласных букв:", list_vowels)
+print("Длина списка:", len(list_vowels))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/07_two_dimensional_list 
+
+array = [[j + (i * 4)   for i in range(3) ] for j in range(1, 5)]
+print(array)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/02_generation 
+
+count_nums = int(input("Введите длину списка: "))
+list_nums = [1 if n % 2 == 0 else n % 5 for n in range(count_nums)]
+print("Результат:", list_nums)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/03_random_competition 
+
+import random
+
+
+count_members = 20
+team1 = [round(random.uniform(5, 10), 2) for _ in range(count_members)]
+team2 = [round(random.uniform(5, 10), 2) for _ in range(count_members)]
+list_winners = [team1[i] if team1[i] > team2[i] else team2[i] for i in range(count_members)]
+
+print("Первая команда:", team1)
+print("Вторая команда:", team2)
+print("Победители тура:", list_winners)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/09_list_of_lists_2 
+
+nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+             [[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
+
+flat = [num for l1 in nice_list for l2 in l1 for num in l2]
+print(flat)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/06_list_compression 
+
+list_num = list(map(int, input("Введите целые числа через пробел: ").split(" ")))
+print("Исхолный список:", list_num)
+count_zero = list_num.count(0)
+for _ in range(count_zero):
+    list_num.remove(0)
+    list_num.append(0)
+print("Список c нулями в конце:", list_num)
+index_zero = list_num.index(0)
+list_num[index_zero:] = []
+print("Список без нулей:", list_num)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/08_entertainment 
+
+count_sticks = int(input("Количество палок: "))
+count_throws = int(input("Количество бросков: "))
+list_sticks = list("|" * count_sticks)
+
+for i in range(1, count_throws + 1):
+    print("Бросок", i, "Сбиты палки с номера ", end = "")
+    begin = int(input())
+    end = int(input("по номер "))
+    list_sticks[begin - 1:end] = ["." for _ in range(end - begin + 1)]
+print("\nРезультат:", "".join(list_sticks))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/04_slices 
+
+alphabet = 'abcdefg'
+
+print("1. Копия:", alphabet[:])
+print("2. Элементы строки в обратном порядке:", alphabet[::-1])
+print("3. Каждый второй элемент строки (включая самый первый):", alphabet[::2])
+print("4. Каждый второй элемент строки после первого:", alphabet[1::2])
+print("5. Все элементы до второго:", alphabet[:1])
+print("6. Все элементы, начаная с конца до предпоследнего:", alphabet[-1:])
+print("7. Все элементы в диапазоне индексов от 3 до 4 (не включая 4):", alphabet[3:4])
+print("8. Последние три элемента строки:", alphabet[-3:])
+print("9. Все элементы в диапазоне индексов от 3 до 4 (не включая 5):", alphabet[3:5])
+print("10. То же, что и в предыдущем пункте, но в обратном порядке:", alphabet[-3:-5:-1])
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module17/10_caesar_cipher 
+
+alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0123456789!?.,:;-"
+
+def encrypt(message, key):
+    encrypted_message = ""
+    for ch in message:
+        if ch in alphabet:
+            index = alphabet.find(ch)
+            new_index = index + key
+            if new_index >= len(alphabet):
+                new_index -= len(alphabet)
+            encrypted_message += alphabet[new_index]
+        else:
+            encrypted_message += ch
+    return encrypted_message
+
+
+
+message = input("Введите сообщение: ")
+shift = int(input("Введите сдвиг: "))
+print("Зашифрованное сообщение:", encrypt(message, shift))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/.git 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/hooks 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/branches 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/info 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/7e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/42 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/34 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ff 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/0a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/24 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/56 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/cf 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/76 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/1c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/19 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/1e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/1b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/7d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/50 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/44 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/7a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/04 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/59 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/3e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/1a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/3a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/fb 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/88 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/17 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/75 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c5 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/5f 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/41 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/6d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/62 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ab 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/72 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ba 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/21 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/fa 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/5a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/53 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/82 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/22 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c9 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/05 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/48 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/03 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/info 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/6a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/4c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/52 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8f 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/66 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a9 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/5c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/6f 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/13 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/06 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/58 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/af 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/10 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/70 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/2a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/6c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/bb 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/0d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/43 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/aa 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b5 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/92 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/7b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ce 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/15 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a7 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/87 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/fe 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/80 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/78 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/86 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/98 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/11 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/pack 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f5 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/90 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/fd 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/46 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/6b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d7 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a8 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ec 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f9 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/54 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/26 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/95 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e5 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/dd 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/3d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/2e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c0 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/09 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/68 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/64 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/69 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/85 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/20 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/29 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d3 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9f 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f7 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/4a 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/83 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/01 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/00 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/4e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/71 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/35 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/27 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/16 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/39 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/61 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/67 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/0e 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/dc 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/38 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/28 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c7 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/81 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ea 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/89 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ac 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/eb 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/84 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/c3 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/2c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/18 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/65 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/49 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/a6 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ad 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/79 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/3c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d1 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/8b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/5b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/07 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/4d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/be 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b7 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/de 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/63 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/da 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/bd 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/fc 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/df 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/51 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/d5 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/47 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/7c 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/14 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ed 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b4 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e9 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e3 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/9b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/55 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ee 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/1d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/3f 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/4b 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/e2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/cb 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ae 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/ca 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/5d 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/cd 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/f2 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/73 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/objects/b3 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/refs 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/refs/tags 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/refs/heads 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/refs/remotes 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/refs/remotes/origin 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/logs 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/logs/refs 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/logs/refs/heads 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/logs/refs/remotes 
+
+Скрипты из папки /home/vadim/Python_Basic/.git/logs/refs/remotes/origin 
+
+Скрипты из папки /home/vadim/Python_Basic/Module15 
+
+Скрипты из папки /home/vadim/Python_Basic/Module15/05_movie 
+
+films = ["Крепкий орешек", "Назад в будущее", "Таксист", "Леон", "Богемская рапсодия", "Город грехов",
+        "Мементо", "Отступники", "Деревня"]
+favorites = []
+film = input("Введите фильм (end для завершения): ")
+while film != "end":
+    if film in films and film not in favorites :
+        favorites.append(film)
+    else:
+        print("Ошибка!!!")
+    film = input("Введите фильм: ")
+print("Любимые фильмы: ", favorites)
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/03_cells 
+
+count_cages = int(input("Кол-во клеток: "))
+cages_list = []
+for i in range(count_cages):
+    print("Эффективность", i + 1, "клетки: ", end = "")
+    cages_list.append(int(input()))
+print("\nНеподходящие знвчения: ", end = "")
+for index in range(len(cages_list)):
+    if cages_list[index] < index + 1:
+        print(cages_list[index], end = " ")
+print()
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/04_videocards 
+
+def get_max(l):
+    max_value = l[0]
+    for e in l:
+        if e > max_value:
+            max_value = e
+    return max_value
+
+count_videos = int(input("Кол-во вилеокарт: "))
+videos_list = []
+for i in range(count_videos):
+    print(i + 1, "Видеокарта: ", end = "")
+    videos_list.append(int(input()))
+
+max_video = get_max(videos_list)
+new_list = [ v for v in videos_list if v < max_video]
+
+print("\nСтарый список видеокарт: ", videos_list)
+print("Новый список видеокарт: ", new_list)
+
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/07_containers 
+
+def get_weight():
+    weight = int(input("ведите вес контейнера (<=200): "))
+    while weight > 200:
+        print("Вес контейнера должен быть не более 200, попробуйте ещё: ", end = "")
+        weight = int(input())
+    return weight
+
+count_сcontainers = int(input("Кол-во контейнеров: "))
+containers_list = []
+for i in range(count_сcontainers):
+    containers_list.append(get_weight())
+
+new_container = int(input("Введите вес нового контейнера: "))
+insert_index = 0
+min_r = 200
+for i in range(len(containers_list)):
+    r = new_container - containers_list[i]
+    if r >= 0 and r <= min_r:
+        min_r = r
+        insert_index = i
+print("\nНомер, куда встал новый контейнер:", insert_index)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/06_word_analysis 
+
+def get_count(l, ch):
+    count = 0
+    for c in l:
+        if c == ch:
+            count += 1
+    return count
+
+uniq_count = 0
+ch_list = list(input("Введите слово: "))
+for ch in ch_list:
+    if get_count(ch_list, ch) == 1:
+        uniq_count += 1
+print("Кол-во уникальных букв:", uniq_count)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/01_list_gen 
+
+number = int(input("Введите число: "))
+odd_list = [n for n in range(1, number + 1) if n % 2 != 0]
+print(odd_list)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/09_word_analysis_2 
+
+def reverse(l):
+    l_r = l.copy()
+    len_list = len(l)
+    for i in range(len_list // 2):
+        l_r[i], l_r[len_list - i - 1] = l_r[len_list - i - 1], l_r[i]
+    return l_r
+
+word = list(input("Введите слово: "))
+if word == reverse(word):
+    print("Слово является палиндромом")
+else:
+    print("Слово не является палиндромом")
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/10_sort 
+
+def buble_sort(l):
+    for i in range(len(l)):
+        for j in range(i + 1, len(l)):
+            if l[j] < l[i]:
+                l[i], l[j] = l[j], l[i]
+    return l
+
+list_numbers = list(map(int, input("Введите числа через пробел: ").split(" ")))
+print("Изначальный список:", list_numbers)
+print("Отсортированный список:", buble_sort(list_numbers))
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/08_running_nums 
+
+def shift(l, k):
+    l_new = l.copy()
+    len_list = len(l)
+    for i in range(len_list):
+        i_new = i + k
+        if i_new >= len_list:
+            i_new -= len_list
+        l_new[i_new] = l[i]
+    return l_new
+
+list_numbers = list(map(int, input("Введите числа через пробел: ").split(" ")))
+k = int(input("Сдвиг: "))
+print("Изначальный список:", list_numbers)
+print("Сдвинутый список список:", shift(list_numbers, k))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module15/02_tournament 
+
+names = ["Артемий", "Борис", "Влад", "Гоша", "Дима", "Евгений", "Женя", "Захар"]
+for index in range(0, len(names), 2):
+    print("Индекс:", index, ", имя:", names[index])
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/.idea 
+
+Скрипты из папки /home/vadim/Python_Basic/.idea/inspectionProfiles 
+
+Скрипты из папки /home/vadim/Python_Basic/Module21 
+
+Скрипты из папки /home/vadim/Python_Basic/Module21/01_challenge_2 
+
+def print_num(num):
+    if num == 1:
+        print(num)
+        return
+    print_num(num - 1)
+    print(num)
+
+
+num = int(input("Введите num: "))
+print_num(num)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/02_my_zip_2 
+
+def zip_2(*args):
+    min_len = len(sorted(args, key=len)[0])
+    return (tuple(list(arg)[l] for arg in args) for l in range(min_len))
+
+"""
+dict1 = {"Alex": 20, "Mike": 30, "Ann": 18, "Pete": 50}
+nums1 = [1, 2, 3, 90]
+nums2 = (0, 2, 3, 8, 10)
+line = "any line"
+zip_gen = zip_2(nums1, dict1, nums2, line)
+print(zip_gen)
+print(list(zip_gen))
+"""
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/03_fibonacci 
+
+def fib1(pos):
+    f_val1 = f_val2 = 1
+    for _ in range(2, pos):
+        f_val1, f_val2 = f_val2, f_val1 + f_val2
+    return  f_val2
+
+
+def fib2(pos):
+    if pos in (1, 2):
+        return 1
+    return fib2(pos - 1) + fib2(pos - 2)
+
+
+pos = int(input("Введите позицию числа в ряде Фибоначчи: "))
+print("Число:", fib1(pos))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/09_hanoi_towers 
+
+def move(n, frm, to):
+    if n == 1:
+        print("Переложить диск {0} со стержня номер {1} на стержень номер {2}".format(n, frm, to))
+    else:
+        tmp = 6 - frm - to
+        move(n - 1, frm, tmp)
+        print("Переложить диск {0} со стержня номер {1} на стержень номер {2}".format(n, frm, to))
+        move(n - 1, tmp, to)
+
+nums = int(input("Введите количество дисков: "))
+move(nums, 1, 3)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/07_advanced_sum 
+
+def sum(*args):
+    summa = 0
+    for arg in args:
+        if isinstance(arg, list) or isinstance(arg, tuple):
+            summa += sum(*arg)
+        else:
+            summa += arg
+    return summa
+
+
+#print("Ответ:", sum([[1, 2, [3]], [1], 3]))
+#print("Ответ:", sum(1, 2, 3, 4, 5))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/04_search_element_2 
+
+import sys
+
+
+site = {
+	'html': {
+		'head': {
+			'title': 'Мой сайт'
+		},
+		'body': {
+			'h2': 'Здесь будет мой заголовок',
+			'div': 'Тут, наверное, какой-то блок',
+			'p': 'А вот здесь новый абзац'
+		}
+	}
+}
+
+
+def find_key(d, key, deep = sys.getrecursionlimit()):
+    if deep == 0:
+        return None
+    if key in d:
+        return d[key]
+    if isinstance(d, dict):
+        for val in d.values():
+            result = find_key(val, key, deep - 1)
+    else:
+        result = None
+
+    return result
+
+key = input("Введите искомый ключ: ")
+if input("Хотите ввести максимальную глубину? Y/N: ").lower() == "y":
+    deep = int(input("Введите максимальную глубину: "))
+    result = find_key(site, key, deep)
+else:
+    result = find_key(site, key)
+print("Значение ключа:", result)
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/05_make_function_faster 
+
+"""
+def calculating_math_func(data):
+    result = 1
+    for index in range(1, data + 1):
+        result *= index
+    result /= data ** 3
+    result = result ** 10
+    return result
+"""
+
+def calculating_math_func(data, vals = dict()):
+    if data in vals:
+        return vals[data]
+    result = 1
+    for index in range(1, data + 1):
+        result *= index
+    result /= data ** 3
+    vals[data] = result ** 10
+    print("Calculated")
+    return vals[data]
+
+print(calculating_math_func(10))
+print(calculating_math_func(20))
+print(calculating_math_func(10))
+print(calculating_math_func(20))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/06_deep_copy 
+
+site = {
+    'html': {
+        'head': {
+            'title': 'Куплю/продам телефон недорого'
+        },
+        'body': {
+            'h2': 'У нас самая низкая цена на iphone',
+            'div': 'Купить',
+            'p': 'продать'
+        }
+    }
+}
+
+def site_copy(d : dict, client: str):
+    d_copy = dict()
+    for key, val in d.items():
+        if isinstance(val, dict):
+            d_copy[key] = site_copy(val, client)
+        else:
+            if key == "title":
+                val = "Куплю/продам {0} недорого".format(client)
+            elif key == "h2":
+                val = "У нас самая низкая цена на {0}".format(client)
+            d_copy[key] = val
+
+    return d_copy
+
+def site_print(k: str, d: dict, deep = 0):
+    if deep == 0:
+        print("{0}{1} = {2}".format("\t" * deep, k, "{"))
+    else:
+        print("{0}'{1}' : {2}".format("\t" * deep, k, "{"))
+    for key, val in d.items():
+        if isinstance(val, dict):
+            site_print(key, val, deep + 1)
+        else:
+            print("{0}'{1}' : {2}".format("\t" * (deep + 1), key, val))
+    print("{0}{1}".format("\t" * deep, "}"))
+
+
+def sites_print(sites: dict):
+    for key, val in sites.items():
+        print("Сайт для {0}:".format(key))
+        site_print("site", val)
+
+
+site_count = int(input("Сколько сайтов: "))
+sites = dict()
+for i_site in range(site_count):
+    site_name = input("Введите название продукта для нового сайта: ")
+    sites[site_name] = site_copy(site, site_name)
+    sites_print(sites)
+    print()
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module21/08_list_of_lists_2 
+
+nice_list = [1, 2, [3, 4], [[5, 6, 7], [8, 9, 10]],
+             [[11, 12, 13], [14, 15], [16, 17, 18]]]
+
+def line_list(lst: list):
+    llst = list()
+    for elem in lst:
+        if isinstance(elem, list):
+            llst.extend(line_list(elem))
+        else:
+            llst.append(elem)
+    return llst
+
+
+print("Ответ:", line_list(nice_list))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20 
+
+Скрипты из папки /home/vadim/Python_Basic/Module20/08_contacts_3 
+
+phone_book = dict()
+while True:
+    print("\nЧто будем делать?")
+    print(" 1. Добавитьконтакт.")
+    print(" 2. Поиск человека по фамилии.")
+    command = int(input(">: "))
+    if command == 1:
+        contact = input("Введите Фамилию Имя и телефон через пробел: ").split()
+        name = (contact[0].capitalize(), contact[1].capitalize())
+        if name in phone_book:
+            print("Такой контакт уже есть в телефонной книге!")
+        else:
+            phone_book[name] = int(contact[2])
+            print(phone_book)
+    elif command == 2:
+        surname = input("Введите Фамилию: ").capitalize()
+        contacts = [(key[0], key[1], val) for key, val in phone_book.items() if surname in key]
+        print("Найденные контакты: {0}\n".format(contacts))
+    else:
+        print("Не правильная команда!")
+        break
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/06_pairs 
+
+import random
+
+origin = [random.randint(0, 15) for _ in range(10)]
+print("Оригинальный список: ", origin)
+new_list1 = [(origin[i], origin[i + 1]) for i in range(0, len(origin), 2)]
+print("Новый список 1: ", new_list1)
+new_list2 = [(origin[i * 2], origin[i * 2 + 1]) for i in range(len(origin) // 2)]
+print("Новый список 2: ", new_list2)
+new_list3 = list(zip(origin[::2], origin[1::2]))
+print("Новый список 3: ", new_list3)
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/05_one_family 
+
+familys = {
+    ("Сидоров", "Никита"): 35,
+    ("Сидорова", "Алина"): 34,
+    ("Сидоров", "Павел"): 10,
+    ("Иванов", "Петр"): 55,
+    ("Иванова", "Анна"): 54,
+    ("Иванов", "Андрей"): 30
+}
+
+surname = input("Введите фамилию: ").capitalize()
+if surname[-1] == "а":
+    surname = surname[:-1]
+for key,val in familys.items():
+    if surname in key[0]:
+        print("{0} {1} {2}".format(key[0], key[1], val))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/03_function 
+
+def slicer(t: tuple, num: int):
+    if t.count(num) == 0:
+        return ()
+    f_index = t.index(num)
+    if t.count(num) == 1:
+        return t[f_index:]
+    else:
+        s_index = t.index(num, f_index + 1)
+        return t[f_index:s_index + 1]
+
+print(slicer((1, 2, 3, 4, 5, 6, 7, 8, 2, 2, 9, 10), 2))
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/10_my_zip 
+
+def zip_1(*args):
+    min_len = len(sorted(args, key=len)[0])
+    for l in range(min_len):
+        yield tuple(list(arg.keys())[l] if isinstance(arg, dict) else arg[l] for arg in args)
+
+dict1 = {"Alex": 20, "Mike": 30, "Ann": 18, "Pete": 50}
+nums1 = [1, 2, 3, 90]
+nums2 = (0, 2, 3, 8, 10)
+line = "any line"
+zip_gen = zip_1(nums1, dict1, nums2, line)
+
+print(zip_gen)
+print(list(zip_gen))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/01_code_review 
+
+students = {
+    1: {
+        'name': 'Bob',
+        'surname': 'Vazovski',
+        'age': 23,
+        'interests': ['biology, swimming']
+    },
+    2: {
+        'name': 'Rob',
+        'surname': 'Stepanov',
+        'age': 24,
+        'interests': ['math', 'computer games', 'running']
+    },
+    3: {
+        'name': 'Alexander',
+        'surname': 'Krug',
+        'age': 22,
+        'interests': ['languages', 'health food']
+    }
+}
+
+
+def f(dict):
+    lst = []
+    string = ''
+    for i in dict:
+        lst += (dict[i]['interests'])
+        string += dict[i]['surname']
+    cnt = 0
+    for s in string:
+        cnt += 1
+    return lst, cnt
+
+
+pairs = []
+for i in students:
+    pairs += (i, students[i]['age'])
+
+
+#my_lst = f(students)[0]
+#l = f(students)[1]
+#print(my_lst, l)
+
+def f(dict):
+    return ([(key, val["age"]) for key, val in students.items()],
+        [interest for key, val in students.items() for interest in val.get("interests", [])],
+        len("".join([val.get("surname", "") for key, val in students.items()])))
+
+ages, interests, surnames_len = f(students)
+
+print('Список пар "ID студента - Возраст" {0}'.format(ages))
+print("Список всех интересрв: {0}".format(interests))
+print("Суммарная длина всех фамилий: {0}".format(surnames_len))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/07_sort_function 
+
+def bubble_sort(arr):
+    if not isinstance(sum(arr), int):
+        return arr
+    sorted_arr = list(arr)
+    for i in range(len(sorted_arr)):
+        for j in range(i + 1, len(sorted_arr)):
+            if sorted_arr[j] < sorted_arr[i]:
+                sorted_arr[i], sorted_arr[j] = sorted_arr[j], sorted_arr[i]
+    return tuple(sorted_arr)
+
+#print(bubble_sort((10, 12, 8, 90, 6, 0, 4, 3, 1)))
+#print(bubble_sort((10, 12, 8.091, 90, 6, 0, 4, 3, 1)))
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/04_players 
+
+players = {
+    ("Ivan", "Volkin"): (10, 5, 13),
+    ("Bob", "Robbin"): (7, 5, 14),
+    ("Rob", "Bobbin"): (12, 8, 2)
+}
+
+print([key + val for key, val in players.items()])
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/02_universal_prog_2 
+
+def is_prime(num: int):
+    if num < 2:
+        return False
+    l_num = num - 1
+    while l_num > 1:
+        if num % l_num == 0:
+            return False
+        l_num -= 1
+    return True
+
+def crypto(iter_obj):
+    return [{obj : iter_obj[obj]} if isinstance(iter_obj, dict) else obj for i, obj in enumerate(iter_obj) if is_prime(i)]
+
+print(crypto([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+print(crypto('О Дивный Новый мир!'))
+
+
+****************************************
+Скрипты из папки /home/vadim/Python_Basic/Module20/09_competition_protocol 
+
+protokol = dict()
+numr = int(input("Сколько записей вносится в протокол? "))
+for i in range(numr):
+    record = input("{0} запись: ".format(i + 1)).split()
+    if record[1] in protokol:
+        if protokol[record[1]][0] < int(record[0]):
+            protokol[record[1]] = (int(record[0]), i)
+    else:
+        protokol[record[1]] = (int(record[0]), i)
+
+sorted_keys = sorted(protokol, key=lambda name:  protokol[name][0] + (9 - protokol[name][1]), reverse=True)
+print("\nПобедители:")
+for i, name in enumerate(sorted_keys[:3]):
+    print("{0} место, {1} ({2})".format(i + 1, name, protokol[name][0]))
+
+****************************************
