@@ -31,3 +31,20 @@ print("Буква {0} встречается в тексте наименьше�
 file.close()
 """
 
+def dir_info(cur_path):
+    info = {"files": 0, "folders": 0, "size": 0}
+    for elem in os.listdir(cur_path):
+        path = os.path.join(cur_path, elem)
+        if os.path.isdir(path):
+            info["folders"] += 1
+            inf = dir_info(path)
+            for k in info:
+                info[k] += inf[k]
+        else:
+            info["files"] += 1
+            info["size"] += os.path.getsize(path)
+    return info
+
+path = input("Введите путь к папке: ")
+info = dir_info(path)
+print(info)
