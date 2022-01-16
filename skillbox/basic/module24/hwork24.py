@@ -258,7 +258,7 @@ gardener.weed()
 gardener.to_water()
 gardener.to_collect()
 gardener.show_harvest()
-"""
+
 
 class Storm:
     answer = "Сложили Воду и Воздух получили Шторм"
@@ -320,3 +320,96 @@ c = a + b
 print(c.answer)
 c = b + a
 print(c.answer)
+"""
+
+class Card:
+    def __init__(self, suit, name, value):
+        self.suit = suit
+        self.name = name
+        self.value = value
+
+class CardDeck:
+    card_suits = ["Пики", "Крести", "Черви", "Буби"]
+    card_names = {"2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10,
+                  "Валет": 10, "Дама": 10, "Король": 10, "Туз": 11}
+    def __init__(self):
+        self.card_list = []
+
+    def shuffle(self):
+        self.card_list.clear()
+        for suit in self.card_suits:
+            for name, value in self.card_names.items():
+                self.card_list.append(Card(suit, name, value))
+        random.shuffle(self.card_list)
+
+    def take_card(self):
+        index = random.randint(0, len(self.card_list) - 1)
+        card = self.card_list[index]
+        self.card_list.pop(index)
+        return card
+
+class Hand:
+    def __init__(self, name):
+        self.name = name
+        self.cards = []
+
+    def add_card(self, card):
+        score = self.get_score()
+        if card.name == "Туз" and score + card.value > 21:
+            card.value = 1
+        self.cards.append(card)
+
+    def get_score(self):
+        score = 0
+        for card in self.cards:
+            score += card.value
+        return score
+
+    def cards_info(self):
+        return ", ".join(["{0} {1}".format(card.name, card.suit)  for card in self.cards])
+
+    def show_info(self):
+        print("{0} у вас сейчас:".format(self.name))
+        print("{0} всего очков {1}".format(self.cards_info(), self.get_score()))
+
+
+card_deck = CardDeck()
+man_hand = Hand("Man")
+comp_hand = Hand("Computer")
+
+card_deck.shuffle()
+for _ in range(2):
+    man_hand.add_card(card_deck.take_card())
+    comp_hand.add_card(card_deck.take_card())
+
+while True:
+    man_hand.show_info()
+    answer = input("\nБудете брать карту? ")
+    if answer == "да":
+        man_hand.add_card(card_deck.take_card())
+        if man_hand.get_score() > 21:
+            break
+        if comp_hand.get_score() <= 16:
+            comp_hand.add_card(card_deck.take_card())
+            if comp_hand.get_score() > 21:
+                break
+
+    else:
+        if comp_hand.get_score() <= 16:
+            comp_hand.add_card(card_deck.take_card())
+        break
+man_score = man_hand.get_score()
+comp_score = comp_hand.get_score()
+
+if  man_score <= 21 and man_score > comp_score:
+    print("\n{0} выиграл у него {1} ({2})".format(man_hand.name, man_score, man_hand.cards_info()))
+    print("У {0} - {1} ({2})".format(comp_hand.name, comp_score, comp_hand.cards_info()))
+elif comp_score <= 21 and comp_score > man_score:
+    print("\n{0} выиграл у него {1} ({2})".format(comp_hand.name, comp_score, comp_hand.cards_info()))
+    print("У {0} - {1} ({2})".format(man_hand.name, man_score, man_hand.cards_info()))
+elif man_score > 21:
+    print("\n{0} выиграл у него {1} ({2})".format(comp_hand.name, comp_score, comp_hand.cards_info()))
+    print("У {0} - {1} перебор! ({2)".format(man_hand.name, man_score, man_hand.cards_info()))
+elif comp_score > 21:
+    print("\n{0} выиграл у него {1} ({2})".format(man_hand.name, man_score, man_hand.cards_info()))
+    print("У {0} - {1} перебор! ({2})".format(comp_hand.name, comp_score, comp_hand.cards_info()))
