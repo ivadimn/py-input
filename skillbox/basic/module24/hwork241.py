@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-class Home:
-    def __init__(self, food = 50, money = 0):
-        self.food = food
-        self.money = money
-
-        
-=======
 import random
 
 
@@ -103,4 +95,4 @@ if man1.fullness < 0:
     print("\n{0} умер!".format(man1.name))
 if man2.fullness < 0:
     print("\n{0} умер!".format(man2.name))
->>>>>>> module 24 finished
+
