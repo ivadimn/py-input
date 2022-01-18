@@ -6,18 +6,18 @@ class Home:
         self.food = food
         self.money = 0
 
-    def take_money(self, summa):
+    def take_money(self, name, summa):
         summa = self.money // 3
         self.money -= summa
-        print("Взяли денег {0}, денег осталось: {1}".format(summa, self.money))
+        print("{0} взял денег {1}, денег осталось: {2}".format(name, summa, self.money))
         return summa
 
-    def put_money(self, summa):
+    def put_money(self, name, summa):
         self.money += summa
-        print("Положили денег {0}, денег стало: {1}".format(summa, self.money))
+        print("{0} положил денег {1}, денег стало: {2}".format(name, summa, self.money))
 
 
-    def take_food(self, weight):
+    def take_food(self, name, weight):
         result = 0
         if self.food >= weight:
             self.food -= weight
@@ -25,12 +25,12 @@ class Home:
         elif 0 < self.food < weight:
             result = self.food
             self.food = 0
-        print("Взяли еды {0}, еды осталось: {1}".format(result, self.food))
+        print("{0} взял еды {1}, еды осталось: {2}".format(name, result, self.food))
         return result
 
-    def put_food(self, weight):
+    def put_food(self, name, weight):
         self.food += weight
-        print("Купили еды {0}, еды стало: {1}".format(weight, self.food))
+        print("{0} купил еды {1}, еды стало: {2}".format(name, weight, self.food))
 
 
 class Man:
@@ -40,7 +40,7 @@ class Man:
         self.fullness = fullness
 
     def eat(self):
-        food_weight = self.home.take_food(50 - self.fullness)
+        food_weight = self.home.take_food(self.name, 50 - self.fullness)
         self.fullness += food_weight
         print("{0} поел теперь сытость - {1}".format(self.name, self.fullness))
 
@@ -48,7 +48,7 @@ class Man:
     def work(self):
         summa = random.randint(1, 100)
         self.fullness -= random.randint(1, 20)
-        self.home.put_money(summa)
+        self.home.put_money(self.name, summa)
         print("{0} поработал, заработал {1} денег, теперь сытость - {2}".format(self.name, summa, self.fullness))
 
 
@@ -58,12 +58,25 @@ class Man:
 
 
     def shopping(self):
-        summa = self.home.take_money(random.randint(1, 50))
+        summa = self.home.take_money(self.name, random.randint(1, 50))
         food_weight = summa
-        self.home.put_food(food_weight)
+        self.home.put_food(self.name, food_weight)
         print("{0} сходил в магазин плюс еды {1} минус денег {2}".format(self.name ,food_weight, summa))
 
-
+    def act(self):
+        number = random.randint(1, 6)
+        if self.fullness < 20:
+            self.eat()
+        elif self.home.food < 10:
+            self.shopping()
+        elif self.home.money < 50:
+            self.work()
+        elif number == 1:
+            self.work()
+        elif number == 2:
+            self.eat()
+        else:
+            self.play()
 
 home = Home()
 man1 = Man("Вася", home)
@@ -73,26 +86,13 @@ family = [man1, man2]
 days = 1
 while man1.fullness >= 0 and man2.fullness >= 0 and days <= 365:
     print("{0} день:".format(days))
-    player = family[random.randint(0, 1)]
-    number = random.randint(1, 6)
-    if player.fullness < 20:
-        player.eat()
-    elif home.food < 10:
-        player.shopping()
-    elif home.money < 50:
-        player.work()
-    elif number == 1:
-        player.work()
-    elif number == 2:
-        player.eat()
-    else:
-        player.play()
-    days += 1
+    man1.act()
+    man2.act()
     print("-" * 50)
-    #input()
+    days += 1
+
 
 if man1.fullness < 0:
     print("\n{0} умер!".format(man1.name))
 if man2.fullness < 0:
     print("\n{0} умер!".format(man2.name))
-
