@@ -34,11 +34,14 @@ class TaskManager:
         self.stack = Stack()
 
     def new_task(self, name, priority):
-        l = self.stack.length()
         task = Task(name, priority)
+        l = self.stack.length()
+        print("*****Вызов функции new_task*** {0}, размер стека {1}\n".format(task, l))
         if l > 0:
             self.insert_task(task)
-            print("*********************************************")
+            print("************Печать стека*********************************")
+            self.print_tasks()
+            print("*********************************************\n")
         else:
             self.stack.push(Task(name, priority))
 
@@ -51,12 +54,8 @@ class TaskManager:
             self.stack.push(t)
             print("Gоложили {0} ".format(t))
         else:
-            if t.priority == task.priority:
-                self.stack.push(t)
-                self.stack.push(task)
-            else:
-                self.stack.push(task)
-                self.stack.push(t)
+            self.stack.push(task)
+            self.stack.push(t)
             print("Конец рекурсии положили {0} и {1}".format(task, t))
 
     def __str__(self):
@@ -79,6 +78,5 @@ manager.new_task("поесть 1", 2)
 manager.new_task("сдать дз 2", 2)
 #manager.new_task("лечь спать 3", 4)
 
-manager.print_tasks()
 manager.print_tasks()
 
