@@ -1,11 +1,10 @@
 class Stack:
 
     def __init__(self):
-        self.__stack = []
+        self.__stack = list()
 
     def push(self, object):
         self.__stack.insert(0, object)
-
 
     def pop(self):
         l = len(self.__stack)
@@ -17,6 +16,10 @@ class Stack:
 
     def length(self):
         return len(self.__stack)
+
+    def print_stack(self):
+        for object in self.__stack:
+            print(object)
 
 
 class Task:
@@ -30,53 +33,60 @@ class Task:
 
 class TaskManager:
     count_task = 0
+
     def __init__(self):
-        self.stack = Stack()
+        self.tasks = Stack()
 
     def new_task(self, name, priority):
         task = Task(name, priority)
-        l = self.stack.length()
+        l = self.tasks.length()
         print("*****Вызов функции new_task*** {0}, размер стека {1}\n".format(task, l))
         if l > 0:
             self.insert_task(task)
-            print("************Печать стека*********************************")
-            self.print_tasks()
-            print("*********************************************\n")
         else:
-            self.stack.push(Task(name, priority))
+            self.tasks.push(Task(name, priority))
+
+        self.count_task += 1
 
     def insert_task(self, task):
-        print("---------------------------{0}".format(task))
-        t : Task = self.stack.pop()
-        print("Извлекли {0}".format(t))
-        if t.priority <= task.priority and self.stack.length() > 0:
-            self.insert_task(task)
-            self.stack.push(t)
-            print("Gоложили {0} ".format(t))
+        t : Task = self.tasks.pop()
+        if self.tasks.length() > 0:
+            if t.priority <= task.priority:
+                self.insert_task(task)
+                self.tasks.push(t)
+            else:
+                self.tasks.push(t)
+                self.tasks.push(task)
         else:
-            self.stack.push(task)
-            self.stack.push(t)
-            print("Конец рекурсии положили {0} и {1}".format(task, t))
+            if t.priority > task.priority:
+                self.tasks.push(t)
+                self.tasks.push(task)
+            else:
+                self.tasks.push(task)
+                self.tasks.push(t)
 
     def __str__(self):
-        if self.stack.length() > 0:
-            return "\n".join(["{0} {1}".format(self.stack.pop().priority, self.stack.pop().name) for _ in
-                              range(self.stack.length())])
+        if self.tasks.length() > 0:
+            return "\n".join(["{0} {1}".format(self.tasks.pop().priority, self.tasks.pop().name) for _ in
+                              range(self.tasks.length())])
 
     def print_tasks(self):
-        for _ in range(self.stack.length()):
-            t = self.stack.pop()
-            print(t)
+        self.tasks.print_stack()
 
+
+tasks = {"сделать уборку 1": 4, "помыть посуду 2": 4, "отдохнуть": 1,
+         "поиграть": 5, "поесть 1": 2, "сдать дз 2": 2}
 
 manager = TaskManager()
-manager.new_task("сделать уборку 1", 4)
-manager.new_task("помыть посуду 2", 4)
-manager.new_task("отдохнуть", 1)
-manager.new_task("поиграть", 5)
-manager.new_task("поесть 1", 2)
-manager.new_task("сдать дз 2", 2)
-#manager.new_task("лечь спать 3", 4)
+
+for k, v in tasks.items():
+    manager.new_task(k, v)
+    print("************Печать стека*********************************")
+    manager.print_tasks()
+    print("*********************************************\n")
+
+manager.new_task("лечь спать 3", 4)
 
 manager.print_tasks()
+
 
