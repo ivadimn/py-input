@@ -65,10 +65,17 @@ class TaskManager:
                 self.tasks.push(task)
                 self.tasks.push(t)
 
-    def __str__(self):
-        if self.tasks.length() > 0:
-            return "\n".join(["{0} {1}".format(self.tasks.pop().priority, self.tasks.pop().name) for _ in
-                              range(self.tasks.length())])
+    def get_list(self):
+        lst = [self.tasks.pop() for _ in range(self.tasks.length())]
+        d = dict()
+        for task in lst:
+            if task.priority in d:
+                d[task.priority] = "; ".join((d[task.priority], task.name))
+            else:
+                d[task.priority] = task.name
+        for task in lst[::-1]:
+            self.tasks.push(task)
+        return d
 
     def print_tasks(self):
         self.tasks.print_stack()
@@ -84,8 +91,10 @@ for k, v in tasks.items():
     print("************Печать стека*********************************")
     manager.print_tasks()
     print("*********************************************\n")
-
 manager.new_task("лечь спать 3", 4)
+
+d = manager.get_list()
+print(d)
 
 manager.print_tasks()
 
