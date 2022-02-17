@@ -52,11 +52,14 @@ print(h3)
 deaths_list = []
 
 
-def get_episod_death(dl: List[dict], id: int, season: int,  episod: int) -> dict:
+def get_episod_death(dl: List[dict], id: int, season: int,  episode: int) -> dict:
     for d in dl:
-        if d["id"] == id and d["season"] == season and d["episod"] == episod:
+        if d["ID эпизода"] == id and d["Номер сезона"] == season and d["Номер эпизода"] == episode:
             return d
-    return dict()
+    new_d = {"ID эпизода": id, "Номер сезона": season, "Номер эпизода": episode,
+             "Общее количество смертей": 0, "Список погибших": []}
+    dl.append(new_d)
+    return new_d
 
 
 base_url = "https://www.breakingbadapi.com/api/"
@@ -65,9 +68,23 @@ deaths_url = "{0}{1}".format(base_url, "deaths")
 
 result = requests.get(episods_url)
 episodes = json.loads(result.text)
-print(episods[0])
+
 
 result = requests.get(deaths_url)
 deaths : List[dict] = json.loads(result.text)
-for episod in episods:
-    deaths_episod = list(filter(lambda elem: elem["episode"] == episod["episode_id"], deaths))
+for episod in episodes:
+    deaths_episod = filter(lambda elem: elem["episode"] == int(episod["episode"])
+                                             and elem["season"] == int(episod["season"]), deaths)
+    for de in deaths_episod:
+        d = get_episod_death(deaths_list, episod["episode_id"], int(de["season"]), int(de["episode"]))
+        d["Общее количество смертей"] += de["number_of_deaths"]
+        d["Список погибших"].append(de["death"])
+
+#pprint(deaths_list)
+death_max = max(deaths_list, key=lambda elem: elem["Общее количество смертей"])
+print("Максимальное количество смертей в: ")
+for k, v in death_max.items():
+    print("{0}: {1}".format(k, v))
+
+with open("death_max.json", "w", encoding="UTF-8") as file:
+    json.dump(death_max, file, skipkeys=True)
