@@ -54,10 +54,10 @@ deaths_list = []
 
 def get_episod_death(dl: List[dict], id: int, season: int,  episode: int) -> dict:
     for d in dl:
-        if d["ID эпизода"] == id and d["Номер сезона"] == season and d["Номер эпизода"] == episode:
+        if d["id"] == id and d["season"] == season and d["episode"] == episode:
             return d
-    new_d = {"ID эпизода": id, "Номер сезона": season, "Номер эпизода": episode,
-             "Общее количество смертей": 0, "Список погибших": []}
+    new_d = {"id": id, "season": season, "episode": episode,
+             "number_of_deaths": 0, "list_deaths": []}
     dl.append(new_d)
     return new_d
 
@@ -77,14 +77,16 @@ for episod in episodes:
                                              and elem["season"] == int(episod["season"]), deaths)
     for de in deaths_episod:
         d = get_episod_death(deaths_list, episod["episode_id"], int(de["season"]), int(de["episode"]))
-        d["Общее количество смертей"] += de["number_of_deaths"]
-        d["Список погибших"].append(de["death"])
+        d["number_of_deaths"] += de["number_of_deaths"]
+        d["list_deaths"].append(de["death"])
 
 #pprint(deaths_list)
-death_max = max(deaths_list, key=lambda elem: elem["Общее количество смертей"])
+death_max = max(deaths_list, key=lambda elem: elem["number_of_deaths"])
 print("Максимальное количество смертей в: ")
-for k, v in death_max.items():
-    print("{0}: {1}".format(k, v))
+print("ID эпизода: {0}\nНомер сезона: {1}\nНомер эпизода: {2}\n"
+          "Общее количество смертей: {3}\nСписок погибших: {4}"
+          .format(death_max["id"], death_max["season"], death_max["episode"],
+                  death_max["number_of_deaths"], death_max["list_deaths"] ))
 
 with open("death_max.json", "w", encoding="UTF-8") as file:
-    json.dump(death_max, file, skipkeys=True)
+    json.dump(death_max, file)
