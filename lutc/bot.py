@@ -8,9 +8,6 @@ sessions = { 12345: Session(12345, "Bob"),
     45678: Session(45678, "Jack")}
 
 
-def save_sessions():
-    with open("sessions.pkl", "wb") as f:
-        pickle.dump(sessions, f)
 
 
 def load_sessions() -> dict:
@@ -21,7 +18,7 @@ def load_sessions() -> dict:
 
 def save_session(key: str, session: Session) -> None:
     db = shelve.open("session.db")
-    db.update({key: session})
+    db[key] = Session
     db.close()
 
 class Bot:
@@ -35,18 +32,17 @@ class Bot:
             session.handle_command(command)
 
 
-print(sessions.get(45678))
-s = load_sessions()
-print(s[34567])
 
-#db = shelve.open("session.db")
-#for k, v in sessions.items():
-#    db[str(k)] = v
-#db.close()
+"""
+db = shelve.open("session.db")
+for k, v in sessions.items():
+    db[str(k)] = v
+db.close()
+"""
 
 db = shelve.open("session.db")
 for k, v in db.items():
-    print(k, v)
+    print(k, v, type(v))
 db.close()
 
 
