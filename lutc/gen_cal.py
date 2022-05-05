@@ -1,11 +1,13 @@
 from datetime import datetime, timedelta
 from pprint import pprint
 
-dt = datetime.strptime("01.{0}.{1}".format(datetime.now().month, datetime.now().year), "%d.%m.%Y")
-print(dt.year)
-print(dt.month)
-print(dt.day)
-print(dt.weekday())
+dt = datetime.strptime("{0}.{1}.01".format(datetime.now().year, datetime.now().month), "%Y.%m.%d")
+ts = dt.timestamp()
+dt1 = datetime.fromtimestamp(ts)
+print(dt1.year)
+print(dt1.month)
+print(dt1.day)
+print(dt1.weekday())
 cal = []
 cal.append(["<<", str(dt.year), ">>"])
 cal.append(["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"])

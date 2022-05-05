@@ -12,7 +12,7 @@ def start(m):
     mc = WMonthTelegramCalendar()
     mc.locale = "ru"
     calendar, step = mc.build()
-
+    #bot.send_message(message.chat.id, '_', reply_markup=types.ReplyKeyboardRemove())
     bot.send_message(m.chat.id,
                      f"Select {LSTEP[step]}",
                      reply_markup=calendar)
@@ -31,9 +31,7 @@ def cal(c):
                               c.message.message_id,
                               reply_markup=key)
     elif result:
-        bot.edit_message_text(f"You selected {result}",
-                              c.message.chat.id,
-                              c.message.message_id)
+        bot.edit_message_text("Ok", c.message.chat.id, c.message.message_id)
 
 
 bot.polling()
