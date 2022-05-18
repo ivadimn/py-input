@@ -17,7 +17,7 @@ def load_sessions() -> dict:
 
 
 def save_session(key: str, session: Session) -> None:
-    db = shelve.open("session.db")
+    db = shelve.open("session1.db")
     db[key] = Session
     db.close()
 
@@ -34,7 +34,7 @@ class Bot:
 
 
 """
-db = shelve.open("session.db")
+db = shelve.open("session1.db")
 for k, v in sessions.items():
     db[str(k)] = v
 db.close()
