@@ -3,14 +3,21 @@ from pprint import pprint
 import json
 import re
 
+import enum
+
+class Tables:
+    USERS = "users"
+
+    class Columns:
+        ID = "id"
+
 RAPID_API_KEY = "f961b0c4f5mshb054c85654b883ep127525jsnbc10f2dddbb5"
 RAPID_API_HOST = "hotels4.p.rapidapi.com"
 CITY_URL = "https://hotels4.p.rapidapi.com/locations/v2/search"
 HOTELS_URL = "https://hotels4.p.rapidapi.com/properties/list"
 PHOTOS_URL = "https://hotels4.p.rapidapi.com/properties/get-hotel-photos"
 DETAIL_URL = "https://hotels4.p.rapidapi.com/properties/get-details"
-"https://hotels.com/dl/hotel/details.html?hotelId=376202&q-check-in=2022-08-01&q-check-out=2022-08-11&q-rooms=1&q-room-0-adults=1&q-room-0-children=0"
-"https://hotels.com/dl/hotel/details.html?hotelId=376202"
+
 
 city_id = 1634829
 h1 = 376202
@@ -58,4 +65,9 @@ def get_detail(id: int):
     details = json.loads(data)
     pprint(details)
 
-get_hotels(city_id)
+#get_hotels(city_id)
+aa = [1, 2, 3, 4]
+for a in aa:
+    print(a)
+else:
+    print("empty")
