@@ -18,7 +18,7 @@ def calc_dice(lst):
     return s
 
 def take_wands(wands_count: int, player : str) -> int:
-    print(f"Осталось {wands_count} палочел.")
+    print(f"Осталось {wands_count} палочек.")
     wands = int(input("{0} сколько палочен возмёте (не больше 3)? ".format(player)))
     return wands
 
