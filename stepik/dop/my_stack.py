@@ -13,6 +13,17 @@ class MyStack:
     def peek(self):
         return self.array[0]
 
+    def __iter__(self):
+        self.index = 0
+        return self
+
+    def __next__(self):
+        if self.index >= len(self.array):
+            raise StopIteration()
+        result = self.array[self.index]
+        self.index += 1
+        return result
+
 
 
 stack = MyStack()
@@ -21,3 +32,5 @@ stack.push(3)
 stack.push(4)
 stack.push(5)
 print(stack.pop())
+for item in stack:
+    print(item)
