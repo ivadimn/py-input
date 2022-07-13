@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 min_salary: float = 50000.0
 step = 1.15
 
