@@ -11,7 +11,6 @@ def accept_connection(server_socket):
     while True:
         print("Before .accept()")
         client_socket, addr = server_socket.accept()
-        client_socket.send("Link OK!!\n".encode())
         print("Connection from", addr)
 
 def send_message(client_socket):

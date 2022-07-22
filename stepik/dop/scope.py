@@ -10,7 +10,7 @@ def fib():
 index = 0
 for num in fib():
    print(num)
-   if index == 0
+   if index == 0:
       continue
    if index == 10:
       break
