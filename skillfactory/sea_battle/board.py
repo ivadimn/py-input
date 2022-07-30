@@ -1,5 +1,6 @@
 from typing import List
 from dot import Dot
+from ship import Ship, Orintation
 
 
 class Board:
@@ -10,9 +11,15 @@ class Board:
         self.__ships = []
 
     def __str__(self):
-        s_field: List[str] = ["  |{0}|".format("|".join([str(num) for num in range(1, 7)])), "-" * 15]
-        for i, s in enumerate(self.__field):
-            s_field.append("{0} |{1}|".format(i + 1, "|".join([ch for ch in s])))
-        s_field.append("-" * 15)
-        return "\n".join(s_field)
+        pass
+
+    def add_ship(self, ship: Ship) -> None:
+        ocupation_dots = ship.dots() + ship.contour()
+        if any([dot in ocupation_dots for dot in ship.dots()]):
+            raise Exception("Корабль выходит за пределы поля!!")
+        self.__ships.append(ship)
+
+
+    def out(self, dot: Dot) -> bool:
+        return not (dot in self.__field)
 
