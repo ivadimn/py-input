@@ -1,16 +1,38 @@
-from board import Board
+from game import Game
+from player import AiResolve
 from dot import Dot
-from ship import Ship, Orintation
+from commons import ShotResult
 
-s = Ship(Dot(1, 0), 3, Orintation.HORIZONTAL)
-ship = Ship(Dot(0, 0), length=3)
-ship1 = Ship(Dot(1, 3), length=2)
-ship2 = Ship(Dot(2, 1), length=2)
-ship3 = Ship(Dot(1, 0), length=2)
+if __name__ == "__main__":
+    #ship_lens = [3, 2, 2, 1, 1, 1, 1]
+    #game = Game(ship_lens)
+    #game.start()
 
-b = Board()
-b.add_ship(ship)
-b.add_ship(ship1)
-b.add_ship(ship2)
-b.add_ship(ship3)
+    air = AiResolve(Dot(5, 5), 6)
+    for direct, dots in air.directs.items():
+        print("{0} - {1}".format(direct, [str(dot) for dot in dots]))
+        print()
+        print("_" * 30)
+    print(list(air.directs.keys())[0])
+    print("*" * 20)
+    """
+    result = ShotResult.WOUNDED
+    while True:
+        dot = air.next_dir(result)
+        print(dot)
+        r = input("Result: ")
+        if r == "p":
+            result = ShotResult.PAST
+        elif r == "w":
+            result = ShotResult.WOUNDED
+        else:
+            break
+"""
+
+
+
+
+
+
+
 
