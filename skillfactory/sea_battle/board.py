@@ -6,7 +6,6 @@ from errors import ErrorBuildBoard, ErrorAddShip, ErrorOutOfBoard, ErrorShot
 from commons import Orientation, Values, ShotResult
 
 
-
 class Board:
 
     def __init__(self, size: int = 6, hidden: bool = False):
@@ -33,7 +32,7 @@ class Board:
     def add_ship(self, ship: Ship) -> None:
         busy_dots = []
         for sh in self.__ships:
-            busy_dots.extend(sh.gen_dots() + sh.contour())
+            busy_dots.extend(sh.dots() + sh.contour())
         if any([dot in busy_dots for dot in ship.dots()]):
             raise ErrorAddShip()
         for dot in ship.dots():
@@ -41,9 +40,9 @@ class Board:
         print()
         self.__ships.append(ship)
 
-    def __get_ship(self, dot: Dot) -> Ship:
+    def get_ship(self, dot: Dot) -> Ship:
         for ship in self.__ships:
-            if dot in ship.gen_dots():
+            if dot in ship.dots():
                 return ship
 
     def out(self, dot: Dot) -> bool:
@@ -57,7 +56,7 @@ class Board:
             self.__field[dot.x][dot.y] = Values.PAST
             return ShotResult.PAST
         elif val == Values.SHIP:
-            ship = self.__get_ship(dot)
+            ship = self.get_ship(dot)
             ship.hit()
             self.__field[dot.x][dot.y] = Values.DROP
             if ship.is_live:

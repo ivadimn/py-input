@@ -80,7 +80,6 @@ class Game:
             print(self.show_boards())
             a = input("Для следующего хода нажмите Enter...")
             print("-" * 50)
-            print("user - {0}, ai - {1}".format(self.user_board.is_live, self.ai_board.is_live))
         else:
             if self.user_board.is_live:
                 print("Поздравляем вы выиграли!!!")

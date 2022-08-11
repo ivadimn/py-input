@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import List
 from board import Board
 from ship import Ship
 from errors import ErrorOutOfBoard, ErrorShot
@@ -50,89 +51,41 @@ class User(Player):
 
 
 class AiResolve:
-    __dots = [[(0, -1), (0, -2)],
-              [(-1, 0), (-2, 0)],
-              [(0, 1), (0, 2)],
-              [(1, 0), (2, 0)]]
-    __dirs = {0: [(0, -1), (0, -2)],
-              1: [(0, 1), (0, 2)],
-              2: [(-1, 0), (-2, 0)],
-              3: [(1, 0), (2, 0)]}
+    __pos_dots = [(0, -1), (-1, 0), (0, 1), (1, 0), (0, -2), (-2, 0), (0, 2), (2, 0)]
 
-    def __init__(self, dot: Dot, size: int):
-        self.__start_dot = dot
+    def __init__(self, sh_dots: List[Dot], size: int):
+        self.__luck_dots = list()
+        self.__luck_dots.append(sh_dots[-1])
         self.__size = size
         self.dots = list()
-        self.directs = dict()
-        self.__create_dots()
-        self.__state = None
-        self.__result = ShotResult.WOUNDED
+        self.__create_dots(sh_dots)
 
-    @property
-    def result(self):
-        return self.__result
+    def append_luck_dot(self, dot: Dot) -> None:
+        self.__luck_dots.append(dot)
 
-    @result.setter
-    def result(self, value: ShotResult):
-        self.__result = value
+    def __create_dots(self, sh_dots: List[Dot]):
+        dot: Dot = self.__luck_dots[0]
+        for item in AiResolve.__pos_dots:
+            ld = Dot(dot.x + item[0], dot.y + item[1])
+            if not out(ld, self.__size) and (ld not in sh_dots):
+                self.dots.append(ld)
 
-    def __create_dots(self):
-        for direct, vals in AiResolve.__dirs.items():
-            lst = list()
-            for d in vals:
-                dot = Dot(self.__start_dot.x + d[0], self.__start_dot.y + d[1])
-                if not out(dot, self.__size):
-                    lst.append(dot)
-            if len(lst) > 0:
-                self.directs[direct] = lst
-
-    def next_dot(self, next_line: bool) -> tuple:
-        if next_line:
-            self.dots.pop(0)
-        dots = self.dots[0]
-        dot = dots.pop(0)
-        return dot.x, dot.y
-
-    def next_dir(self, result: ShotResult) -> Dot:
-        if self.__state is None:
-            key = list(self.directs.keys())[0]
-            self.__state = (key, 0, result)
-            return self.directs[key][0]
-        if result == ShotResult.WOUNDED:
-            key = self.__state[0]
-            index = self.__state[1]
-            if len(self.directs[key]) > index + 1:
-                index += 1
-                self.__state = (key, index, result)
-                return self.directs[key][index]
-            else:
-                key += 1
-                self.__state = (key, 0, result)
-                return self.directs[key][0]
+    def find_next_dot(self, last_dot: Dot, direct: str) -> Dot:
+        if direct == "hor":
+            ds = filter(lambda d: d.x == last_dot.x, self.dots)
         else:
-            key = self.__state[0] + 1
-            if self.directs.get(key) is not None:
-                self.__state = (key, 0, result)
-                return self.directs[key][0]
+            ds = filter(lambda d: d.y == last_dot.y, self.dots)
+        min_d = min(ds)
+        self.dots.remove(min_d)
+        return min_d
 
-
-
-
-
-
-    def gen_dots(self):
-        for line in self.dots:
-            print("next line")
-            for dot in line:
-                print("next dot in line")
-                if self.__result == ShotResult.WOUNDED:
-                    # self.__result = ShotResult.PAST
-                    yield dot.x, dot.y
-                    print("after yield")
-                else:
-                    self.__result = ShotResult.WOUNDED
-                    print("to next line")
-                    break
+    def next_dot(self) -> tuple:
+        if len(self.__luck_dots) == 1:
+            dot = self.dots.pop(0)
+        else:
+            direct = "hor" if self.__luck_dots[0].x == self.__luck_dots[1].x else "ver"
+            dot = self.find_next_dot(self.__luck_dots[1], direct)
+        return dot.x, dot.y
 
 
 class Ai(Player):
@@ -153,12 +106,14 @@ class Ai(Player):
             if self.__ai_resolve is None:
                 return self.__rand_xy()
             else:
-                self.__ai_resolve.result = self.__result
-                return self.__ai_resolve.next_dot(True)
+                return self.__ai_resolve.next_dot()
         elif self.__result == ShotResult.WOUNDED:
             if self.__ai_resolve is None:
-                self.__ai_resolve = AiResolve(self.__shot_dots[-1], self.enemy_board.size)
-            return self.__ai_resolve.next_dot(False)
+                self.__ai_resolve = AiResolve(self.__shot_dots, self.enemy_board.size)
+            else:
+                self.__ai_resolve.append_luck_dot(self.__shot_dots[-1])
+
+            return self.__ai_resolve.next_dot()
 
     def move(self) -> ShotResult:
         print("Ход компьютера!")
@@ -170,6 +125,8 @@ class Ai(Player):
             try:
                 self.__result = self.enemy_board.shot(dot)
                 self.__shot_dots.append(dot)
+                if self.__result == ShotResult.KILLED:
+                    self.__add_contour_dots(dot)
                 return self.__result
             except ErrorShot as ex:
                 print(ex.args[0], "повторите попытку...")
@@ -178,3 +135,9 @@ class Ai(Player):
         x = random.randint(0, self.board.size - 1)
         y = random.randint(0, self.board.size - 1)
         return x, y
+
+    def __add_contour_dots(self, dot: Dot) -> None:
+        ship = self.enemy_board.get_ship(dot)
+        for d in ship.contour():
+            if d not in self.__shot_dots:
+                self.__shot_dots.append(d)
