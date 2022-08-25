@@ -21,7 +21,6 @@ url = "https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D1%81
 response = requests.get(url)
 soup = BS(response.text, "html.parser")
 
-
 table = soup.find("tbody")
 rows = table.find_all("tr")
 currs = []
@@ -34,7 +33,7 @@ for row in rows:
             if "(" in raw_name:
                 si = raw_name.index("(")
                 name = raw_name[:si]
-                full_name = raw_name[si+1:-1]
+                full_name = raw_name[si + 1:-1]
             else:
                 name = raw_name
                 full_name = ""
@@ -49,10 +48,17 @@ curr_dict = dict()
 for i, curr in enumerate(currs):
     name = curr[0]
     if name in curr_dict:
-        if curr[2] not in curr_dict[name]:
-            curr_dict[name][curr[2]] = curr[1]
+        lst = curr_dict.get(name)
+        for item in lst:
+            if item[0] == curr[2]:
+                break
+        else:
+            lst.append((curr[2], curr[1]))
     else:
-        curr_dict[name] = {curr[2]: curr[1]}
+        curr_dict[name] = [(curr[2], curr[1])]
+
+for key, val in curr_dict.items():
+    print(key, val)
 
 with open("curr_list.json", "w") as f:
     json.dump(curr_dict, f)
