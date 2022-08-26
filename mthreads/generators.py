@@ -3,6 +3,7 @@ from time import time
 def gen(s):
     for i in s:
         yield i
+        print("next")
 
 def gen_filename():
     while True:
@@ -11,5 +12,6 @@ def gen_filename():
         yield pattern.format(t)
 
 
-for i in range(513, 1024):
-    print(i, chr(i))
+g = gen("vadim")
+print(next(g))
+print(next(g))
