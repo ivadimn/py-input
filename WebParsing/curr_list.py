@@ -1,5 +1,6 @@
 from collections import namedtuple
 from dataclasses import dataclass
+import re
 import requests
 import json
 from bs4 import BeautifulSoup as BS
@@ -37,7 +38,10 @@ for row in rows:
             else:
                 name = raw_name
                 full_name = ""
-            curr.append(name.lower())
+            n = name.lower().strip()
+            name = "".join([c for c in n if c.isalpha()])
+            full_name = "".join([c for c in full_name if c.isalpha() or c == " "])
+            curr.append(name)
             curr.append(full_name)
         elif i == 6:
             curr.append(col.text[:-1])
