@@ -1,4 +1,5 @@
 import asyncio
+import random
 
 
 async def do(value: str):
@@ -12,5 +13,17 @@ async def main():
     print("from main")
 
 
+def check_while() -> None:
+    step = 0
+    while step < 10:
+        x = random.randint(1, 100)
+        print(x)
+        step += 1
+        if x < 10:
+            break
+    else:
+        print("было 10 попыток")
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    check_while()
