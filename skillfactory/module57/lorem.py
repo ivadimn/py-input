@@ -1,11 +1,12 @@
 from random import choice, randint
+import json
 
 one = [
     "Товарищи! ",
     "С другой стороны ",
     "Равным образом ",
     "Не следует однако забывать, что ",
-    "Таким образом",
+    "Таким образом ",
     "Повседневная практика показывает, что ",
 ]
 two = [
@@ -48,15 +49,29 @@ sentences = [
 ]
 
 
+def get_sentence(s_lst: list, mat_lst: list) -> str:
+    n = randint(0, 1)
+    if n == 1:
+        mat = choice(mat_lst)
+        pos = randint(1, len(s_lst) - 1)
+        s_lst.insert(pos, mat)
+    return " ".join(s_lst)
+
+
 def get_content(scount: int = 2) -> str:
+    with open("cenz.json", "r", encoding="utf-8") as ef:
+        j_list = json.load(ef)
     content = [one[0]]
     for s in range(scount):
+        ss = []
         if s > 0:
-            content.append(one[randint(1, 5)])
-        content.append(choice(two))
-        content.append(choice(three))
-        content.append(choice(four))
-    return "".join(content)
+            ss.append(one[randint(1, 5)])
+        ss.append(choice(two))
+        ss.append(choice(three))
+        ss.append(choice(four))
+        sentence = get_sentence(" ".join(ss).split(), j_list)
+        content.append(sentence)
+    return " ".join(content)
 
 
 def get_text(pcount: int = 2) -> str:
@@ -76,5 +91,8 @@ def get_title() -> str:
     return choice(sentences)
 
 
-text = get_content(4)
-print(text)
+print(get_content(10))
+
+
+
+
