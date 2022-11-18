@@ -8,9 +8,8 @@ from email.mime.application import MIMEApplication
 from email.mime.base import MIMEBase
 from email import encoders
 import mimetypes
+import config
 
-vadimn = "WV2mrczR7jLirWjsmp1R"
-pickup = "9NQsHFmqmeYCynFEf9QE"
 
 class Mail:
 
@@ -52,7 +51,7 @@ class Mail:
 
     def send(self, destination: str) -> bool:
         try:
-            self.__server.login(self.__sender, pickup)
+            self.__server.login(self.__sender, config.PICKUP)
             self.__message["To"] = destination
             self.__server.sendmail(self.__sender, destination, self.__message.as_string())
             return True
@@ -78,6 +77,6 @@ if __name__ == "__main__":
     mail = Mail("pickup.music@mail.ru")
     subj = input("Введите тему: ")
     body = input("Введите сщщбщение: ")
-    mail.prepare(subj, body, ["docs/ExecutorAPI.mp4"])
+    mail.prepare(subj, body, [])
     print(mail.send("ivadimn@mail.ru"))
 
