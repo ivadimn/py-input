@@ -1,5 +1,6 @@
 from random import choice, randint
 import json
+import string
 
 one = [
     "Товарищи! ",
@@ -88,10 +89,36 @@ def get_text(pcount: int = 2) -> str:
 
 
 def get_title() -> str:
-    return choice(sentences)
+    with open("cenz.json", "r", encoding="utf-8") as ef:
+        j_list = json.load(ef)
+    return get_sentence(choice(sentences).split(), j_list)
 
 
-print(get_content(10))
+def replace(word: str) -> str:
+    return "{0}{1}".format(word[0], "*" * (len(word) - 1))
+
+
+def cenzor(content: str) -> str:
+    with open("cenz.json", "r", encoding="utf-8") as ef:
+        j_list = json.load(ef)
+    raw_words = content.split()
+    words = [word for word in content.translate(str.maketrans("", "", string.punctuation)).split()]
+    for i, word in enumerate(words):
+        if word in j_list:
+            raw_word = raw_words[i]
+            last_symbol = raw_word[-1]
+            if last_symbol.isalpha():
+                raw_words[i] = replace(raw_word)
+            else:
+                raw_words[i] = "{0}{1}".format(replace(raw_word[:-1]), last_symbol)
+    return " ".join(raw_words)
+
+
+con = get_content(10)
+print(con)
+con_cenz = cenzor(con)
+print(con_cenz)
+print(get_title())
 
 
 
