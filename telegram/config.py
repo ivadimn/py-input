@@ -1,5 +1,0 @@
-API_ID = 719857
-API_HASH = "116418fc8fe7c94af47225f0860cf85d"
-TITLE = "Vadm Telegram"
-SHORT_NAME = "VTelegram"
-
