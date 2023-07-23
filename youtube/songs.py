@@ -1,7 +1,7 @@
 import os
 from moviepy.editor import *
 
-video_file = "/home/vadim/Загрузки/Rock and Roll.mp4"
+video_file = "/home/vadim/Загрузки/ForeverYoungRimake.mp4"
 
 
 def get_abs_path(path: str) -> str:
@@ -27,6 +27,7 @@ def save1(file_name: str) -> str:
     video.close()
     print("{0} was saved".format(audio_file))
     return audio_file
+
 
 if __name__ == "__main__":
     print(os.path.exists(video_file))
