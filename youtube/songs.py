@@ -1,8 +1,9 @@
 import os
 from moviepy.editor import *
 
-video_file = "/home/vadim/Загрузки/ForeverYoungRimake.mp4"
-
+video_files = [
+               "/home/vadim/video/Steven Tyler, Slash, and Train Dream On at the Howard Stern Birthday Bash (2014).mp4",
+               ]
 
 def get_abs_path(path: str) -> str:
     abs_path = os.path.join(os.path.abspath(os.path.curdir), path)
@@ -30,6 +31,6 @@ def save1(file_name: str) -> str:
 
 
 if __name__ == "__main__":
-    print(os.path.exists(video_file))
-    save1(video_file)
-
+    for video_file in video_files:
+        print(os.path.exists(video_file))
+        save1(video_file)

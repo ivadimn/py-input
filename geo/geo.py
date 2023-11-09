@@ -3,7 +3,6 @@ import pandas as np
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from time import sleep
-import
 
 
 def read_subjects(filename: str) -> List[str]:
@@ -13,8 +12,12 @@ def read_subjects(filename: str) -> List[str]:
             subs.append(line[:-1])
         return subs
 
+
 def save_locations(locs: List):
-    with open()
+    with open("locations.txt", "w") as f:
+        for l in locs:
+            f.write("{0},{1},{2}\n".format(l[0], l[1][0], l[1][1]))
+
 
 def map_locations(locations: np.Series):
     #geolocator = Nominatim(user_agent='Gazprom_app', timeout=3)
@@ -27,9 +30,10 @@ def map_locations(locations: np.Series):
             position = Nominatim(user_agent='Gazprom_app', timeout=3).geocode(location)
             if position is not None:
                 map_locs.append((location, (position.latitude, position.longitude)))
+                print(location, position.latitude, position.longitude)
             else:
                 map_locs.append((location, (None, None)))
-            print(location, position.latitude, position.longitude)
+                print(location, "None", "None")
     #return np.DataFrame(map_locs, columns=['country_subject', 'position'])
     return map_locs
 
@@ -37,5 +41,5 @@ def map_locations(locations: np.Series):
 if __name__ == "__main__":
     l = read_subjects("subjects.txt")
     locs = np.Series(l)
-    print(map_locations(locs))
+    save_locations(map_locations(locs))
 
