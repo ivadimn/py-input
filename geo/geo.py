@@ -3,13 +3,14 @@ import pandas as np
 from geopy.geocoders import Nominatim
 from geopy.distance import geodesic
 from time import sleep
+import json
 
 
 def read_subjects(filename: str) -> List[str]:
     subs = list()
     with open(filename, "r") as f:
         for line in f:
-            subs.append(line[:-1])
+            subs.append(line[:-1].lower())
         return subs
 
 
